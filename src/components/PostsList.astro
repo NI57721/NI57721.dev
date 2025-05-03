@@ -1,0 +1,31 @@
+---
+const { posts } = Astro.props;
+---
+<style lang="scss">
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    @include mixin.mobile-view {
+      padding-left: 3vw;
+    }
+  }
+  ul > li {
+    margin-bottom: 4px;
+    @include mixin.mobile-view {
+      margin-bottom: 1vw;
+    }
+  }
+  ul > li > a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+</style>
+
+<ul>
+  {posts.reverse().map((post: string) =>
+    <li><a href={post.url}>{post.frontmatter.title}</a> - {post.frontmatter.pubDate}</li>
+  )}
+</ul>
+

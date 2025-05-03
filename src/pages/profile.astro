@@ -1,0 +1,27 @@
+---
+const title = 'NI57721 のプロフィール'
+const description = 'プロフィールだよ～'
+import Base from 'src/layouts/Base.astro';
+---
+<style lang="scss">
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    @include mixin.mobile-view {
+      margin-bottom: 2vw;
+    }
+  }
+  p {
+    line-height: 1.5;
+  }
+</style>
+
+<Base title={title} decription={description}>
+  <h1>Who I am</h1>
+  <p>
+    私は人間です。<br>
+    Vim と Arch Linux が大好きです。
+  </p>
+</Base>
+

@@ -1,0 +1,76 @@
+.post-body {
+  & h1 {
+    border-bottom: solid 1px var.$grey-01;
+    font-size: 24px;
+    font-weight: bold;
+    margin-block: 16px 8px;
+    @include mixin.mobile-view {
+      margin-block: 3vw 2vw;
+    }
+  }
+
+  & h2 {
+    border-bottom: solid 1px var.$grey-01;
+    font-size: 20px;
+    font-weight: bold;
+    margin-block: 16px 8px;
+    @include mixin.mobile-view {
+      margin-block: 3vw 2vw;
+    }
+  }
+
+  & h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-block: 16px 8px;
+    @include mixin.mobile-view {
+      margin-block: 3vw 2vw;
+    }
+  }
+
+  & h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-block: 16px 8px;
+    @include mixin.mobile-view {
+      margin-block: 3vw 2vw;
+    }
+  }
+
+  & p {
+    margin-bottom: 16px;
+    @include mixin.mobile-view {
+      margin-bottom: 3vw;
+    }
+  }
+
+  & p > code {
+    background-color: var.$grey-02;
+    padding-inline: 4px;
+    @include mixin.mobile-view {
+      padding-inline: 1vw;
+    }
+  }
+
+  & a {
+    font-weight: bold;
+    &:link {
+      color: var.$blue-01;
+    }
+    &:visited {
+      color: var.$blue-02;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  section.footnotes {
+    font-size: 14px;
+    margin-top: 16px;
+    @include mixin.mobile-view {
+      margin-top: 3vw;
+    }
+  }
+}
+

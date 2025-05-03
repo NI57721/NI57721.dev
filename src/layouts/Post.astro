@@ -1,0 +1,23 @@
+---
+import Base from 'src/layouts/Base.astro';
+import 'src/styles/post-body.scss';
+const { frontmatter } = Astro.props;
+---
+<style lang="scss">
+  h1 {
+    font-size: 28px;
+  }
+  p {
+    font-size: 14px;
+    text-align: right;
+  }
+</style>
+
+<Base title={frontmatter.title} decription="NI57721 のブログです">
+  <h1>{frontmatter.title}</h1>
+  <p>{frontmatter.pubDate}</p>
+  <section class="post-body">
+    <slot />
+  </section>
+</Base>
+

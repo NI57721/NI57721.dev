@@ -1,0 +1,20 @@
+@use 'variables';
+
+@mixin mobile-view {
+  @media screen and (max-width: variables.$breakpoint-for-mobile) {
+    @content;
+  }
+}
+
+@mixin middle-view {
+  @media screen and (min-width: variables.$breakpoint-for-mobile) and (max-width: variables.$main-width) {
+    @content;
+  }
+}
+
+@mixin wide-view {
+  @media screen and (min-width: variables.$main-width) {
+    @content;
+  }
+}
+

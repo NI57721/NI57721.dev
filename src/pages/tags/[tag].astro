@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostsList from 'src/components/PostsList.astro';
+export async function getStaticPaths() {
+  const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+  const uniqueTags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+  return uniqueTags.map((tag: string) => {
+    const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+<style lang="scss">
+  h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    @include mixin.mobile-view {
+      margin-bottom: 2vw;
+    }
+  }
+  p {
+    line-height: 1.5;
+  }
+</style>
+
+<Base title={"タグ: " + tag}>
+  <h1>タグ "{tag}" の記事</h1>
+  <PostsList posts={posts} />
+</Base>
+

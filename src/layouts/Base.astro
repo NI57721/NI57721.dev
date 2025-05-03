@@ -1,0 +1,118 @@
+---
+import 'src/styles/_reset.scss';
+const { title, description, lang = 'ja' } = Astro.props;
+---
+<html lang={lang}>
+  <head prefix="og: https://ogp.me/ns#">
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="NI57721, Vim, Neovim" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://NI57721.dev/" />
+    <meta property="og:image" content="https://NI57721.dev/path/to/ogp.jpg" />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@NI57721" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <style lang="scss">
+    header {
+      background-color: var.$green-02;
+      width: 100%;
+      @include mixin.middle-view {
+        min-width: var.$content-width;
+      }
+    }
+    header > ul {
+      display: grid;
+      grid-template-columns: auto repeat(2, 100px);
+      margin-inline: auto;
+      padding: 4px 12px;
+      text-align: left;
+      width: var.$content-width;
+      @include mixin.mobile-view {
+        grid-template-columns: auto repeat(2, 1fr);
+        padding: 1vw 2vw;
+        width: 100%;
+      }
+    }
+    header li {
+      color: #fff;
+      font-size: 16px;
+      &:first-child {
+        text-align: left;
+      }
+      &:not(:first-child) {
+        text-align: right;
+      }
+    }
+    main {
+      margin: 8px auto;
+      padding-inline: 12px;
+      text-align: left;
+      width: var.$content-width;
+      @include mixin.mobile-view {
+        margin-block: 2vw;
+        padding-inline: 2vw;
+        width: 100%;
+      }
+    }
+    footer {
+      border-top: solid 1px var.$grey-01;
+      border-bottom: solid 2px var.$green-02;
+      width: 100%;
+      @include mixin.middle-view {
+        min-width: var.$content-width;
+      }
+    }
+    footer > p {
+      font-size: 12px;
+      margin-inline: auto;
+      padding: 4px 12px;
+      text-align: right;
+      width: var.$content-width;
+      @include mixin.mobile-view {
+        padding: 1vw 2vw;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <body>
+    <header>
+      <ul>
+        {['root', 'profile', 'blog'].map((item: string) =>
+          <li>
+            <a href={item === 'root' ? '/' : '/' + item}>
+              {item === 'root' ? 'NI57721 のお部屋' : item.replace(/./, (c) => c.toUpperCase())}
+            </a>
+          </li>
+        )}
+      </ul>
+    </header>
+
+    <div class="--loading">
+      <div class="--loading-inner"></div>
+      <div class="--wait-until-loaded">
+      </div>
+    </div>
+
+    <main class="main --wait-until-loaded" role="main">
+      <slot />
+    </main>
+
+    <footer>
+      <p>&copy;NI57721 All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
+

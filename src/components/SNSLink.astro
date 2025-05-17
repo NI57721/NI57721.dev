@@ -1,0 +1,23 @@
+---
+import { Icon } from 'astro-icon/components';
+const { icon, url } = Astro.props;
+---
+<style lang="scss">
+  a {
+    color: var.$green-02;
+    font-size: 32px;
+    text-align: left;
+    transition: color 0.3s 0s ease;
+    @include mixin.mobile-view {
+      font-size: 10vw;
+    }
+    &:hover {
+     color: var.$green-01;
+    }
+  }
+</style>
+
+<a href={url}>
+  <Icon name={icon} />
+</a>
+

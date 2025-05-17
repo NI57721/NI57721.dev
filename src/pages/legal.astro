@@ -1,0 +1,43 @@
+---
+const title = 'Legal'
+import Base from 'src/layouts/Base.astro';
+import LegalItem from 'src/components/LegalItem.astro';
+---
+<style lang="scss">
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    @include mixin.mobile-view {
+      margin-bottom: 10vw;
+      padding-inline: 3vw;
+    }
+  }
+  p {
+    line-height: 1.5;
+  }
+</style>
+
+<Base title={title}>
+  <h1>Legal</h1>
+  {
+    [
+      {
+        name: 'Remix Icon', url: 'https://github.com/Remix-Design/RemixIcon',
+        licence: 'Apache 2.0', licenceUrl: 'https://github.com/Remix-Design/RemixIcon/blob/master/License',
+      },
+      {
+        name: 'Material Design', url: 'https://github.com/Templarian/MaterialDesign',
+        licence: 'Apache 2.0', licenceUrl: 'https://github.com/Templarian/MaterialDesign/blob/master/LICENSE',
+      },
+      {
+        name: 'PrimeIcons', url: 'https://github.com/primefaces/primeicons',
+        licence: 'MIT', licenceUrl: 'https://github.com/primefaces/primeicons/blob/master/LICENSE',
+      },
+    ].map((licenceData: {name: string, url: string, licence: string, licenceUrl: string}) =>
+    <LegalItem name={licenceData.name} url={licenceData.url} licence={licenceData.licence}
+      licenceUrl={licenceData.licenceUrl} />
+    )
+  }
+</Base>
+

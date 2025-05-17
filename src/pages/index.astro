@@ -1,35 +1,85 @@
 ---
-const title = 'NI57721 のお部屋'
-const description = '悪い子はいねえが'
+const title = 'NI57721'
+const description = 'Web site managed by a web engineer'
 import Base from 'src/layouts/Base.astro';
 ---
 <style lang="scss">
-  li {
-    margin-bottom: 8px;
+  div {
+    padding-block: 16px;
     @include mixin.mobile-view {
-      margin-bottom: 2vw;
+      padding: 3vw;
+      margin-bottom: 3vw;
     }
   }
-  a {
+
+  div p {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  div a {
+    font-weight: bold;
+    &:link {
+      color: var.$blue-01;
+    }
+    &:visited {
+      color: var.$blue-02;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    padding-block: 16px;
+    @include mixin.mobile-view {
+      padding: 3vw;
+    }
+  }
+
+  li {
+    font-size: 24px;
+    margin-bottom: 16px;
+    margin-left: 24px;
+    padding-left: 8px;
+    @include mixin.mobile-view {
+      margin-bottom: 8vw;
+    }
+    &:first-child {
+      list-style-type: "😄";
+    }
+    &:nth-child(2) {
+      list-style-type: "📝";
+    }
+  }
+
+  li a {
     margin-block: 4px;
-    text-decoration: underline;
+    text-decoration: none;
     @include mixin.mobile-view {
       margin-block: 1vw;
     }
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
 </style>
 
-<Base title={title} decription={description}>
+<Base title={title} description={description}>
+  <div>
+    <p>
+      Welcome.<br>
+      This is a web site managed by a web engineer, <a href="/profile/">NI57721</a>.
+    </p>
+  </div>
   <ul>
     {['profile', 'blog'].map((item: string) =>
-      <li>
-        <a href={item}>
-          {item.replace(/./, (c) => c.toUpperCase())}
-        </a>
-      </li>
+    <li>
+      <a href={item}>
+        {item.replace(/./, (c) => c.toUpperCase())}
+      </a>
+    </li>
     )}
   </ul>
 </Base>

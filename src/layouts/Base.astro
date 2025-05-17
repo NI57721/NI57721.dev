@@ -27,11 +27,18 @@ const { title, description, lang = 'ja' } = Astro.props;
   <style lang="scss">
     header {
       background-color: var.$green-02;
+      place-content: center;
+      height: 40px;
       width: 100%;
       @include mixin.middle-view {
         min-width: var.$content-width;
       }
+      @include mixin.mobile-view {
+        height: 12vw;
+        padding-inline: 3vw;
+      }
     }
+
     header > ul {
       display: grid;
       grid-template-columns: auto repeat(2, 100px);
@@ -45,9 +52,13 @@ const { title, description, lang = 'ja' } = Astro.props;
         width: 100%;
       }
     }
+
     header li {
       color: #fff;
       font-size: 16px;
+      @include mixin.mobile-view {
+        font-size: 5vw;
+      }
       &:first-child {
         text-align: left;
       }
@@ -55,6 +66,7 @@ const { title, description, lang = 'ja' } = Astro.props;
         text-align: right;
       }
     }
+
     main {
       margin: 8px auto;
       padding-inline: 12px;
@@ -66,6 +78,7 @@ const { title, description, lang = 'ja' } = Astro.props;
         width: 100%;
       }
     }
+
     footer {
       border-top: solid 1px var.$grey-01;
       border-bottom: solid 2px var.$green-02;
@@ -74,6 +87,7 @@ const { title, description, lang = 'ja' } = Astro.props;
         min-width: var.$content-width;
       }
     }
+
     footer > p {
       font-size: 12px;
       margin-inline: auto;
@@ -93,7 +107,7 @@ const { title, description, lang = 'ja' } = Astro.props;
         {['root', 'profile', 'blog'].map((item: string) =>
           <li>
             <a href={item === 'root' ? '/' : '/' + item}>
-              {item === 'root' ? 'NI57721 のお部屋' : item.replace(/./, (c) => c.toUpperCase())}
+              {item === 'root' ? 'NI57721' : item.replace(/./, (c) => c.toUpperCase())}
             </a>
           </li>
         )}

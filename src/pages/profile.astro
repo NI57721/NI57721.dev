@@ -1,13 +1,12 @@
 ---
-const title = 'NI57721 のプロフィール'
-const description = 'プロフィールだよ～'
+const title = 'Profile'
 import Base from 'src/layouts/Base.astro';
 ---
 <style lang="scss">
   h1 {
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 16px;
     @include mixin.mobile-view {
       margin-bottom: 2vw;
     }
@@ -17,11 +16,11 @@ import Base from 'src/layouts/Base.astro';
   }
 </style>
 
-<Base title={title} decription={description}>
+<Base title={title}>
   <h1>Who I am</h1>
   <p>
-    私は人間です。<br>
-    Vim と Arch Linux が大好きです。
+    I am a human, not a bot.<br>
+    I love Vim and Linux.
   </p>
 </Base>
 

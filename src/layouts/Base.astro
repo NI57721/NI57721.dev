@@ -84,13 +84,13 @@ const { title, description, lang = 'ja' } = Astro.props;
       border-top: solid 1px var.$grey-01;
       border-bottom: solid 2px var.$green-02;
       place-content: center;
-      margin-top: 32px;
+      margin-block: 32px 4px;
       width: 100%;
       @include mixin.middle-view {
         min-width: var.$content-width;
       }
       @include mixin.mobile-view {
-        margin-top: 10vw;
+        margin-block: 10vw .5vw;
         padding-inline: 3vw;
       }
     }

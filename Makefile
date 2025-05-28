@@ -14,3 +14,19 @@ run:
 upgrade:
 	pnpm dlx @astrojs/upgrade
 
+## convert: Convert and resize image files.
+convert:
+	scripts/convert.sh
+
+## remove: Remove converted image files.
+remove:
+	scripts/remove.sh
+
+## upload: Upload all files under the upload directory after, if needed, resized and converted.
+upload:
+	scripts/upload.sh
+
+## upload-raw: Upload all files under the directory for upload as it is.
+upload-raw:
+	scripts/upload-raw.sh
+

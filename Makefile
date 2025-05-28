@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help run upload upload-raw
+.PHONY: help run upgrade check convert delete-exif remove upload upload-raw
 
 ## help: Display this message.
 help:
@@ -17,4 +17,27 @@ upgrade:
 ## check: Check Astro files.
 check:
 	pnpm astro check
+
+## convert: Convert and resize image files.
+convert:
+	scripts/convert.sh
+
+## delete-exif: Delete exif data from all files to be uploaded.
+delete-exif:
+	scripts/delete-exif.sh
+
+## remove: Remove converted files.
+remove-converted:
+	scripts/remove-converted.sh
+
+## upload-converted: Upload converted files under the upload directory.
+upload-converted:
+	scripts/upload-converted.sh
+
+## upload-raw: Upload all files under the directory for upload as it is.
+upload-raw:
+	scripts/upload-raw.sh
+
+## cur: Convert image files and then upload and remove them.
+cur: delete-exif convert upload-converted remove-converted
 

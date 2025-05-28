@@ -5,6 +5,12 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula',
+      wrap: true,
+    }
+  },
   vite: {
     css: {
       preprocessorOptions: {

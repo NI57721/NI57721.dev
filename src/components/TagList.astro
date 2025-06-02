@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
+const tagCount: Map<string, number> = new Map(uniqueTags.map((tag: string): [string, number] => {
+  return [tag, posts.filter((post: any) => post.data.tags.includes(tag)).length];
+}));
+---
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: repeat(5, 1fr);
+    @include mixin.mobile-view {
+      grid-gap: 1vw;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+</style>
+
+<ul>
+  {
+    uniqueTags
+      .sort((x: string, y: string) => {
+        const xCount = tagCount.get(x) ?? 0;
+        const yCount = tagCount.get(y) ?? 0;
+        if (xCount == yCount) {
+          return x.localeCompare(y);
+        } else {
+          return yCount - xCount;
+        }
+      })
+      .map((tag: string) =>
+        <li><a href={'/blog/tag/' + tag}>{tag}</a> [{tagCount.get(tag)}]</li>
+      )
+  }
+</ul>
+

@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 
+const { tag } = Astro.props;
 const posts = await getCollection('posts');
+const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
 ---
 <style lang="scss">
   ul {
@@ -27,7 +29,7 @@ const posts = await getCollection('posts');
 
 <ul>
   {
-    posts
+    filteredPosts
       .sort((x, y) => x.data.publishDate.localeCompare(y.data.publishDate))
       .map((post) =>
         <li><a href={'/blog/' + post.id}>{post.data.title}</a> - {post.data.publishDate}</li>

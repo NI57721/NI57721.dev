@@ -14,9 +14,9 @@ const { frontmatter } = Astro.props;
   }
 </style>
 
-<Base title={frontmatter.title} decription="NI57721 のブログです">
+<Base title={frontmatter.title} decription={frontmatter.description}>
   <h1>{frontmatter.title}</h1>
-  <p>{frontmatter.pubDate}</p>
+  <p>{frontmatter.publishDate}</p>
   <section class="post-body">
     <slot />
   </section>

@@ -14,3 +14,7 @@ run:
 upgrade:
 	pnpm dlx @astrojs/upgrade
 
+## check: Check Astro files.
+check:
+	pnpm astro check
+

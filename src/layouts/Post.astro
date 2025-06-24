@@ -13,7 +13,7 @@ const { frontmatter } = Astro.props;
     text-align: right;
   }
 
-  .updated-date {
+  p:nth-child(3) {
     color: var.$green-02;
   }
 </style>
@@ -21,7 +21,7 @@ const { frontmatter } = Astro.props;
 <Base title={frontmatter.title} decription={frontmatter.description}>
   <h1>{frontmatter.title}</h1>
   <p>publish: {frontmatter.publishDate}</p>
-  {frontmatter.updatedDate !== undefined && <p class="updated-date">updated: {frontmatter.updatedDate}</p>}
+  {frontmatter.updatedDate !== undefined && <p>updated: {frontmatter.updatedDate}</p>}
   <section class="post-body">
     <slot />
   </section>

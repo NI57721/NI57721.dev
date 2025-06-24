@@ -28,7 +28,7 @@ const posts = await getCollection('posts');
 <ul>
   {
     posts
-      .sort((x, y) => x.data.publishDate.localeCompare(y.data.publishDate))
+      .sort((x, y) => y.data.publishDate.localeCompare(x.data.publishDate))
       .map((post) =>
         <li><a href={'/blog/' + post.id}>{post.data.title}</a> - {post.data.publishDate}</li>
       )

@@ -38,6 +38,7 @@
   }
 
   & p {
+    line-height: 1.4;
     margin-bottom: 16px;
     @include mixin.mobile-view {
       margin-bottom: 3vw;
@@ -67,6 +68,7 @@
 
   & img {
     max-width: 100%;
+    margin-bottom: 16px;
   }
 
   section.footnotes {

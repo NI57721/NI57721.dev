@@ -52,6 +52,9 @@ import Base from 'src/layouts/Base.astro';
     &:nth-child(2) {
       list-style-type: "📝";
     }
+    &:nth-child(3) {
+      list-style-type: "⭐";
+    }
   }
 
   li a {
@@ -74,7 +77,7 @@ import Base from 'src/layouts/Base.astro';
     </p>
   </div>
   <ul>
-    {['profile', 'blog'].map((item: string) =>
+    {['profile', 'blog', 'celesphere'].map((item: string) =>
     <li>
       <a href={item}>
         {item.replace(/./, (c) => c.toUpperCase())}

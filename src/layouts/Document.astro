@@ -1,0 +1,32 @@
+---
+import 'src/styles/_reset.scss';
+import SNSLink from 'src/components/SNSLink.astro';
+const { title, description, lang = 'ja' } = Astro.props;
+---
+<html lang={lang}>
+  <head prefix="og: https://ogp.me/ns#">
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="NI57721, Vim, Neovim" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://NI57721.dev/" />
+    <meta property="og:image" content="https://NI57721.dev/path/to/ogp.jpg" />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@NI57721" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
+

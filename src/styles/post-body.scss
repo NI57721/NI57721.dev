@@ -71,6 +71,28 @@
     margin-bottom: 16px;
   }
 
+  & ul {
+    margin-bottom: 16px;
+  }
+
+  & ul ul {
+    margin-bottom: 0;
+  }
+
+  & ul > li {
+    margin-left: 16px;
+    list-style: disc;
+    & ul > li {
+      list-style: circle;
+      & ul > li {
+        list-style: disc;
+        & ul > li {
+          list-style: circle;
+        }
+      }
+    }
+  }
+
   section.footnotes {
     font-size: 14px;
     margin-top: 16px;

@@ -7,8 +7,8 @@ tags: ['Vim', '旅行', 'Astro']
 # はじまり
 私が普段 Vim や Vim 以外のことについて日々おしゃべりをしている [vim-jp](https://vim-jp.org/) 内の有志のメンバー8人で、千葉県富津市金谷にて、5月3日～5月6日の3泊4日の日程で Vim 合宿に行ってきました！　会場は「合宿だけに集中できる施設」の [voido](https://voido.space/) さん。内房から東京湾を望む素敵な立地でした。2階建ての家を丸々貸し切るので、まるで `/home` にいるかのようにリラックスできました。Vim 合宿とは銘打っていますが、各々好きな作業をして過ごします。Vim 本体にコントリビュートしたり、OSS 活動したりする人もいれば、私のように個人のウェブ・サイトをいじる人もいました。
 
-![voido の外観](https://r2.NI57721.dev/blog/post-1/voido-outer.avif)
-![建物の中の様子](https://r2.NI57721.dev/blog/post-1/voido-inner.avif)
+![voido の外観](https://r2.NI57721.dev/blog/20250506-vim-summer-camp/voido-outer.avif)
+![建物の中の様子](https://r2.NI57721.dev/blog/20250506-vim-summer-camp/voido-inner.avif)
 
 ## 合宿での目標
 私は、2024年の末に Cloudflare で [NI57721.dev](https://NI57721.dev) というドメインを取得たものの、それ以降そのまま放置していました。そこで、合宿期間中にこのドメインにブログを構築してデプロイすることを目標としました。

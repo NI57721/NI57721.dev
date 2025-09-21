@@ -1,0 +1,24 @@
+---
+const title = 'Celesphere -- Celestial sphere emulator';
+const description = 'Celesphere -- Celestial sphere emulator';
+const lang = 'en';
+const backgroundColor = '#002';
+
+import Celesphere from 'src/components/Celesphere/';
+import Document from 'src/layouts/Document.astro';
+---
+<script define:vars={{ backgroundColor }}>
+  const root = document.querySelector(':root');
+  root.style.setProperty('--backgroundColor', backgroundColor);
+</script>
+
+<style lang="scss">
+  html, body {
+    background-color: var(--backgroundColor);
+  }
+</style>
+
+<Document title={title}>
+  <Celesphere backgroundColor={backgroundColor} client:only="react" />
+</Document>
+

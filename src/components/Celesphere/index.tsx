@@ -8,7 +8,6 @@ type CelesphereProps = {
 };
 
 function Celesphere({ backgroundColor }: CelesphereProps) {
-  const hoge = 'hoge';
   const style = css({
     backgroundColor: backgroundColor,
     height: '100vh',

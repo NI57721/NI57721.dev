@@ -22,16 +22,14 @@ type SceneProps = {
 };
 
 function Scene({ backgroundColor }: SceneProps) {
-  const radius = 3;
+  const radius = 10;
 
   return(
     <Canvas camera={{ position: [0, 0, 1] }}>
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
       <Sphere radius={radius} />
-      <StarDots count={15000} distance={radius * 0.997} />
+      <StarDots distance={radius * 0.99} magnitudeCap={8.5} />
       <OrbitControls />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
     </Canvas>
   );
 }

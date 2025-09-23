@@ -114,6 +114,20 @@ class Hipparcos
     JSON.generate(arr)
   end
 
+  # Use constellationship.fab
+  def self.fromDataToConstellationLineJSON
+    data = fromData
+    h = {}
+    data.each do |hip|
+      h[hip.id] = [Math.cos(hip.ra) * Math.cos(hip.de), Math.sin(hip.ra) * Math.cos(hip.de), Math.sin(hip.de)]
+    end.compact
+    pairs = open('constellationship.fab').read.split("\n")
+      .flat_map{_1.split.map(&:to_i).each_slice(2).to_a[1..]}
+      .map{|a, b| puts b if h[b].nil? ;[h[a], h[b]]}
+    JSON.generate(pairs)
+  end
+
+
   COMMON_NAMES = {
     13847 => 'Acamar',
     7588 => 'Achernar',

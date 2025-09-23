@@ -17,15 +17,29 @@ function Celesphere({ backgroundColor }: CelesphereProps) {
     width: '100vw',
   });
   const [magnitudeCap, setMagnitudeCap] = useState(8.5);
+  const [lined, setLined] = useState(true);
 
   function handleMagnitudeCapPinch(m: number) {
     setMagnitudeCap(m);
   };
 
+  function handleLinedChange(b: boolean) {
+    setLined(b);
+  };
+
   return(
     <div css={style}>
-      <Scene backgroundColor={backgroundColor} magnitudeCap={magnitudeCap} />
-      <Controller magnitudeCap={magnitudeCap} handleMagnitudeCapPinch={handleMagnitudeCapPinch} />
+      <Scene
+        backgroundColor={backgroundColor}
+        magnitudeCap={magnitudeCap}
+        lined={lined}
+      />
+      <Controller
+        magnitudeCap={magnitudeCap}
+        handleMagnitudeCapPinch={handleMagnitudeCapPinch}
+        lined={lined}
+        handleLinedChange={handleLinedChange}
+      />
     </div>
   );
 }

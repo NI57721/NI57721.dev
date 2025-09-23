@@ -3,6 +3,7 @@ import React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import StarDots from './StarDots';
+import ConstellationLines from './ConstellationLines'
 
 type SphereProps = {
   radius: number;
@@ -20,9 +21,10 @@ function Sphere({ radius }: SphereProps ) {
 type SceneProps = {
   backgroundColor: string;
   magnitudeCap: number;
+  lined: boolean;
 };
 
-function Scene({ backgroundColor, magnitudeCap }: SceneProps) {
+function Scene({ backgroundColor, magnitudeCap, lined }: SceneProps) {
   const radius = 10;
 
   return(
@@ -30,6 +32,7 @@ function Scene({ backgroundColor, magnitudeCap }: SceneProps) {
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
       <Sphere radius={radius} />
       <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
+      {lined && <ConstellationLines distance={radius} />}
       <OrbitControls />
     </Canvas>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as THREE from 'three';
-import { OrbitControls, Points, PointMaterial } from '@react-three/drei';
+import { Points } from '@react-three/drei';
 import StarData from './data/8.5.json';
 
 type StarDatum = {

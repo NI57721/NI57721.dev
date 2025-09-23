@@ -15,15 +15,45 @@ function Slider({ magnitudeCap, handleMagnitudeCapPinch }: SliderProps) {
   });
 
   return(
-    <input
-      css={style}
-      min="-2"
-      max="8.5"
-      onChange={(e) => handleMagnitudeCapPinch(parseFloat(e.target.value))}
-      step="0.1"
-      type="range"
-      value={magnitudeCap}
-    />
+    <div>
+      <p>Apparent Magnitude</p>
+      <input
+        css={style}
+        min="-2"
+        max="8.5"
+        onChange={(e) => handleMagnitudeCapPinch(parseFloat(e.target.value))}
+        step="0.1"
+        type="range"
+        value={magnitudeCap}
+      />
+      <p>{magnitudeCap}</p>
+    </div>
+  );
+}
+
+type LinerProps = {
+  lined: boolean;
+  handleLinedChange: Function;
+};
+
+function Liner({ lined, handleLinedChange }: LinerProps) {
+  const style = css({
+    height: 24,
+    width: 24,
+  });
+
+  return(
+    <div>
+      <input
+        css={style}
+        id="lined"
+        name="lined"
+        onChange={(e) => handleLinedChange(e.target.value !== "true")}
+        type="checkbox"
+        value={lined}
+      />
+      <label for="lined">Lines</label>
+    </div>
   );
 }
 
@@ -32,9 +62,7 @@ type ControllerProps = {
   handleMagnitudeCapPinch: Function;
 };
 
-function Controller({ magnitudeCap, handleMagnitudeCapPinch }: ControllerProps) {
-  const radius = 10;
-
+function Controller({ magnitudeCap, handleMagnitudeCapPinch, lined, handleLinedChange }: ControllerProps) {
   const style = css({
     backgroundColor: '#fff',
     fontSize: 16,
@@ -48,9 +76,8 @@ function Controller({ magnitudeCap, handleMagnitudeCapPinch }: ControllerProps) 
 
   return(
     <div css={style}>
-      <p>Apparent Magnitude</p>
       <Slider magnitudeCap={magnitudeCap} handleMagnitudeCapPinch={handleMagnitudeCapPinch} />
-      <p>{magnitudeCap}</p>
+      <Liner lined={lined} handleLinedChange={handleLinedChange} />
     </div>
   );
 }

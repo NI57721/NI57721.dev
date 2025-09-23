@@ -4,8 +4,8 @@ import { OrbitControls, Points, PointMaterial } from '@react-three/drei';
 import StarData from './data/8.5.json';
 
 type StarDatum = {
-  position: float[];
-  magnitude: float;
+  position: number[];
+  magnitude: number;
   color: number[];
   name: string | null;
 };
@@ -14,17 +14,26 @@ function loadJSON(): StarDatum[] {
   JSON.parse
 }
 
+function clamp(v: number, min: number, max: number): number {
+  if (v > max) {
+    return max;
+  } else if (v > min) {
+    return v;
+  } else {
+    return min;
+  }
+}
+
 type StarDotsProps = {
-  distance: float;
-  magnitudeCap: float;
+  distance: number;
+  magnitudeCap: number;
 };
 
 function StarDots({ distance, magnitudeCap }: StarDotsProps) {
-  const { positions, colors, sizes } = React.useMemo(() => {
+  const { positions, colors } = React.useMemo(() => {
     const n = StarData.length
     const pos = new Float32Array(n * 3)
     const col = new Float32Array(n * 3)
-    const siz = new Float32Array(n)
     for (let i = 0; i < n; i++) {
       const datum = StarData[i];
       if (datum.magnitude > magnitudeCap) {
@@ -36,10 +45,22 @@ function StarDots({ distance, magnitudeCap }: StarDotsProps) {
       col[i * 3]     = datum.color[0];
       col[i * 3 + 1] = datum.color[1];
       col[i * 3 + 2] = datum.color[2];
-      siz[i] = (magnitudeCap + 4) / (datum.magnitude + 2);
     }
-    return { positions: pos, colors: col, sizes: siz }
-  }, [magnitudeCap, distance])
+    return { positions: pos, colors: col }
+  }, [distance, magnitudeCap])
+
+  const { sizes } = React.useMemo(() => {
+    const n = StarData.length
+    const siz = new Float32Array(n)
+    for (let i = 0; i < n; i++) {
+      const datum = StarData[i];
+      if (datum.magnitude > magnitudeCap) {
+        continue;
+      }
+      siz[i] = clamp(-9 / (magnitudeCap + 1.01) * (datum.magnitude + 1) + 10, 1, 20);
+    }
+    return { sizes: siz }
+  }, [magnitudeCap])
 
   const vertexShader = `
     attribute float size;

@@ -19,16 +19,17 @@ function Sphere({ radius }: SphereProps ) {
 
 type SceneProps = {
   backgroundColor: string;
+  magnitudeCap: number;
 };
 
-function Scene({ backgroundColor }: SceneProps) {
+function Scene({ backgroundColor, magnitudeCap }: SceneProps) {
   const radius = 10;
 
   return(
     <Canvas camera={{ position: [0, 0, 1] }}>
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
       <Sphere radius={radius} />
-      <StarDots distance={radius * 0.99} magnitudeCap={8.5} />
+      <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
       <OrbitControls />
     </Canvas>
   );

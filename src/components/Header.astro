@@ -1,0 +1,84 @@
+---
+type item = {
+  name: string;
+  path: string;
+};
+
+const items: item[] = [
+  {
+    name: 'NI57721',
+    path: '/',
+  },
+  {
+    name: 'Profile',
+    path: '/profile',
+  },
+  {
+    name: 'Blog',
+    path: '/blog',
+  },
+];
+---
+<style lang="scss">
+  header {
+    background-color: var.$green-02;
+    place-content: center;
+    height: 40px;
+    width: 100%;
+    @include mixin.middle-view {
+      min-width: var.$content-width;
+    }
+    @include mixin.mobile-view {
+      height: 12vw;
+      padding-inline: 3vw;
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: auto repeat(2, 100px);
+    margin-inline: auto;
+    padding: 4px 12px;
+    text-align: left;
+    width: var.$content-width;
+    @include mixin.mobile-view {
+      grid-template-columns: auto repeat(2, 1fr);
+      padding: 1vw 2vw;
+      width: 100%;
+    }
+  }
+
+  li {
+    &:first-child {
+      text-align: left;
+    }
+    &:not(:first-child) {
+      text-align: right;
+    }
+  }
+
+  a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    @include mixin.mobile-view {
+      font-size: 5vw;
+    }
+    &:hover {
+      font-weight: bold;
+    }
+  }
+</style>
+
+<header>
+  <ul>
+     {items.map((item) =>
+       <li>
+         <a href={item.path}>
+           {item.name}
+         </a>
+       </li>
+     )}
+  </ul>
+</header>
+

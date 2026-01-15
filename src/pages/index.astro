@@ -1,7 +1,28 @@
 ---
-const title = 'NI57721'
-const description = 'Web site managed by a web engineer'
-import Base from 'src/layouts/Base.astro';
+import Base from '/src/layouts/Base.astro';
+
+const title = 'NI57721';
+const description = 'Web site managed by a web engineer';
+
+type item = {
+  name: string;
+  path: string;
+};
+
+const items: item[] = [
+  {
+    name: 'Profile',
+    path: '/profile',
+  },
+  {
+    name: 'Blog',
+    path: '/blog',
+  },
+  {
+    name: 'Celesphere',
+    path: '/celesphere',
+  },
+];
 ---
 <style lang="scss">
   div {
@@ -77,12 +98,10 @@ import Base from 'src/layouts/Base.astro';
     </p>
   </div>
   <ul>
-    {['profile', 'blog', 'celesphere'].map((item: string) =>
-    <li>
-      <a href={item}>
-        {item.replace(/./, (c) => c.toUpperCase())}
-      </a>
-    </li>
+    { items.map((item) =>
+        <li>
+          <a href={item.path}>{item.name}</a>
+        </li>
     )}
   </ul>
 </Base>

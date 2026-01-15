@@ -28,12 +28,10 @@ const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
 </style>
 
 <ul>
-  {
-    filteredPosts
+  { filteredPosts
       .sort((x, y) => y.data.publishDate.localeCompare(x.data.publishDate))
       .map((post) =>
         <li><a href={'/blog/' + post.id}>{post.data.title}</a> - {post.data.publishDate}</li>
-      )
-  }
+  )}
 </ul>
 

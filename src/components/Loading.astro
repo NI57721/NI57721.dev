@@ -1,0 +1,84 @@
+<script lang="ts">
+  window.addEventListener('DOMContentLoaded', () => {
+    const waitingElements = document.querySelectorAll('.--wait-until-loaded');
+    const loadingAnimationElement = document.querySelector('.loading');
+    const previousDisplay = {};
+
+    for (const e of waitingElements) {
+      previousDisplay[e] = e.style.display;
+      e.style.display = 'none';
+    }
+    const interval = setInterval(() => {
+      for (const e of waitingElements) {
+        if (!_loadedAllImagesIn(e)) {
+          return;
+        }
+      }
+      loadingAnimationElement.style.display = 'none';
+      for (const e of waitingElements) {
+        e.style.display = previousDisplay[e];
+      }
+      clearInterval(interval);
+    }, 10000);
+  });
+
+  function _loadedAllImagesIn(element) {
+    const imgChildren = element.querySelectorAll('img');
+    for (const e of imgChildren) {
+      if (e.style.display !== 'none' && !e.complete) {
+        return false;
+      }
+    }
+    return true;
+  }
+</script>
+
+<style>
+  .loading {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+
+  .inner {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: loading;
+    border-radius: 50%;
+    border: solid 5px var.$green-02;
+    border: solid 5px red;
+    border-bottom-color: transparent;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100px;
+    left: calc((100vw - 100px) / 2);
+    position: absolute;
+    top: calc((100vh - 100px) / 2);
+    width: 100px;
+    @include mixin.wide-view {
+      background: cyan;
+    }
+  }
+
+  .--wait-until-loaded {
+    display: none;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<div class="loading">
+  <div class="inner"></div>
+  <div class="wait-until-loaded">
+    <slot />
+  </div>
+</div>
+

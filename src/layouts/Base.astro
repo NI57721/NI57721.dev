@@ -1,7 +1,7 @@
 ---
 import Document from '/src/layouts/Document.astro';
 import Header from '/src/components/Header.astro';
-import Loading from '/src/components/Loading.astro';
+import LoadingAnimation from '/src/components/LoadingAnimation.astro';
 import Footer from '/src/components/Footer.astro';
 
 const { title, description, lang = 'ja' } = Astro.props;
@@ -22,8 +22,8 @@ const { title, description, lang = 'ja' } = Astro.props;
 
 <Document title={title} description={description} lang={lang}>
   <Header />
-  <Loading />
-  <main class="main --wait-until-loaded" role="main">
+  <LoadingAnimation></LoadingAnimation>
+  <main class="main" role="main" data-loading>
     <slot />
   </main>
   <Footer />

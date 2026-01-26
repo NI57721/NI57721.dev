@@ -1,11 +1,11 @@
 ---
+import Celesphere from '/src/components/Celesphere/';
+import Document from '/src/layouts/Document.astro';
+
 const title = 'Celesphere -- Celestial sphere emulator';
 const description = 'Celesphere -- Celestial sphere emulator';
 const lang = 'en';
 const backgroundColor = '#002';
-
-import Celesphere from '/src/components/Celesphere/';
-import Document from '/src/layouts/Document.astro';
 ---
 <script define:vars={{ backgroundColor }}>
   const root = document.querySelector(':root');

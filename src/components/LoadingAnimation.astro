@@ -1,0 +1,92 @@
+<style lang="scss">
+  section {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    &[data-done] {
+      display: none;
+    }
+  }
+
+  .animation {
+    $size: 100px;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: loading;
+    border-radius: 50%;
+    border: 5px solid var.$green-02;
+    border-bottom-color: transparent;
+    box-sizing: border-box;
+    display: inline-block;
+    height: $size;
+    left: calc((100vw - $size) / 2);
+    position: absolute;
+    top: calc((100vh - $size) / 2);
+    width: $size;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .list {
+    display: none;
+  }
+
+  :global([data-loading]) {
+    display: none;
+  }
+</style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+
+    if(finalizeLoadingIfReady()) {
+      return;
+    }
+    const interval = setInterval(() => {
+      finalizeLoadingIfReady();
+      clearInterval(interval);
+    }, 100);
+  });
+
+  function finalizeLoadingIfReady() {
+    const loadedElements = document.querySelectorAll('[data-loading]');
+    const animationElement = document.querySelector('#loading-animation');
+
+    for (const e of loadedElements) {
+      if (!loadedAllImagesIn(e)) {
+        return false;
+      }
+    }
+    for (const e of loadedElements) {
+      e.removeAttribute('data-loading');
+    }
+    animationElement.setAttribute('data-done', '');
+    return true;
+  }
+
+  function loadedAllImagesIn(element) {
+    const imgChildren = element.querySelectorAll('img');
+    for (const e of imgChildren) {
+      if (!e.complete) {
+        return false;
+      }
+    }
+    return true;
+  }
+</script>
+
+<section id="loading-animation">
+  <div class="animation"></div>
+  <div class="list" data-loading>
+    <slot />
+  </div>
+</section>
+

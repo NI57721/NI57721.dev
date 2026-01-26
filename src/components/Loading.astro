@@ -19,7 +19,7 @@
         e.style.display = previousDisplay[e];
       }
       clearInterval(interval);
-    }, 10000);
+    }, 100);
   });
 
   function _loadedAllImagesIn(element) {
@@ -33,11 +33,11 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .loading {
     height: 100vh;
-    width: 100%;
     position: relative;
+    width: 100%;
   }
 
   .inner {
@@ -46,8 +46,7 @@
     animation-timing-function: linear;
     animation-name: loading;
     border-radius: 50%;
-    border: solid 5px var.$green-02;
-    border: solid 5px red;
+    border: solid 5px var.$green-01;
     border-bottom-color: transparent;
     box-sizing: border-box;
     display: inline-block;
@@ -56,9 +55,6 @@
     position: absolute;
     top: calc((100vh - 100px) / 2);
     width: 100px;
-    @include mixin.wide-view {
-      background: cyan;
-    }
   }
 
   .--wait-until-loaded {

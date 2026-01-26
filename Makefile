@@ -21,6 +21,11 @@ upgrade:
 check:
 	pnpm astro check
 
+## lint: Run eslint.
+.PHONY: lint
+lint:
+	pnpm exec lint src
+
 ## convert: Convert and resize image files.
 .PHONY: convert
 convert:

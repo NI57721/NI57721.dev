@@ -26,6 +26,11 @@ check:
 lint:
 	pnpm exec eslint src
 
+## format: Run prettier.
+.PHONY: format
+format:
+	pnpm exec prettier . --write
+
 ## convert: Convert and resize image files.
 .PHONY: convert
 convert:

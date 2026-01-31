@@ -68,11 +68,14 @@
     for (const e of loadedElements) {
       e.removeAttribute('data-loading');
     }
+    if(!animationElement) {
+      return;
+    }
     animationElement.setAttribute('data-done', '');
     return true;
   }
 
-  function loadedAllImagesIn(element) {
+  function loadedAllImagesIn(element: Element): Boolean {
     const imgChildren = element.querySelectorAll('img');
     for (const e of imgChildren) {
       if (!e.complete) {

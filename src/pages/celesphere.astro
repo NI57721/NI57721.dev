@@ -1,5 +1,5 @@
 ---
-import Celesphere from '@/components/Celesphere/';
+import CelesphereView from '@/components/Celesphere/';
 import Document from '@/layouts/Document.astro';
 
 const title = 'Celesphere -- Celestial sphere emulator';
@@ -7,7 +7,7 @@ const description = 'Celesphere -- Celestial sphere emulator';
 const lang = 'en';
 const backgroundColor = '#002';
 ---
-<script define:vars={{ backgroundColor }}>
+<script is:inline define:vars={{ backgroundColor }}>
   const root = document.querySelector(':root');
   root.style.setProperty('--backgroundColor', backgroundColor);
 </script>
@@ -19,6 +19,6 @@ const backgroundColor = '#002';
 </style>
 
 <Document title={title} description={description} lang={lang}>
-  <Celesphere backgroundColor={backgroundColor} client:only="react" />
+  <CelesphereView backgroundColor={backgroundColor} client:only="react" />
 </Document>
 

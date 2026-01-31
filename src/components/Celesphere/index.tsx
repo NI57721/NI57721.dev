@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useState } from 'react';
-import * as THREE from 'three'
+import { useState } from 'react';
 import Controller from './Controller';
 import Scene from './Scene';
 
@@ -30,7 +29,6 @@ function Celesphere({ backgroundColor }: CelesphereProps) {
   return(
     <div css={style}>
       <Scene
-        backgroundColor={backgroundColor}
         magnitudeCap={magnitudeCap}
         lined={lined}
       />

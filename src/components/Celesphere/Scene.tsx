@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import React from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import StarDots from './StarDots';
@@ -19,12 +18,11 @@ function Sphere({ radius }: SphereProps ) {
 }
 
 type SceneProps = {
-  backgroundColor: string;
   magnitudeCap: number;
   lined: boolean;
 };
 
-function Scene({ backgroundColor, magnitudeCap, lined }: SceneProps) {
+function Scene({ magnitudeCap, lined }: SceneProps) {
   const radius = 10;
 
   return(

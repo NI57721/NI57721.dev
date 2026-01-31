@@ -3,17 +3,6 @@ import * as THREE from 'three';
 import { Points } from '@react-three/drei';
 import StarData from './data/8.5.json';
 
-type StarDatum = {
-  position: number[];
-  magnitude: number;
-  color: number[];
-  name: string | null;
-};
-
-function loadJSON(): StarDatum[] {
-  JSON.parse
-}
-
 function clamp(v: number, min: number, max: number): number {
   if (v > max) {
     return max;

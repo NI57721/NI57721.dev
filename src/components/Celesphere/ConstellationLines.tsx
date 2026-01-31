@@ -1,4 +1,3 @@
-import React from 'react';
 import * as THREE from 'three';
 import { Line } from '@react-three/drei';
 import ConstellationLinePairs from './data/constellation-lines.json';
@@ -7,8 +6,9 @@ function arcBetween(
   a: [number, number, number],
   b: [number, number, number],
   radius: number,
-  segments = 32,
-): Vector3[] {
+  segments?: number,
+): THREE.Vector3[] {
+  segments ||= 32;
   const va = new THREE.Vector3(...a).normalize();
   const vb = new THREE.Vector3(...b).normalize();
 

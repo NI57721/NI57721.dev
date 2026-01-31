@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React from 'react'
 
 type SliderProps = {
   magnitudeCap: number;
@@ -50,9 +49,9 @@ function Liner({ lined, handleLinedChange }: LinerProps) {
         name="lined"
         onChange={(e) => handleLinedChange(e.target.value !== "true")}
         type="checkbox"
-        value={lined}
+        value={String(lined)}
       />
-      <label for="lined">Lines</label>
+      <label htmlFor="lined">Lines</label>
     </div>
   );
 }
@@ -60,6 +59,8 @@ function Liner({ lined, handleLinedChange }: LinerProps) {
 type ControllerProps = {
   magnitudeCap: number;
   handleMagnitudeCapPinch: Function;
+  lined: boolean;
+  handleLinedChange: Function;
 };
 
 function Controller({ magnitudeCap, handleMagnitudeCapPinch, lined, handleLinedChange }: ControllerProps) {

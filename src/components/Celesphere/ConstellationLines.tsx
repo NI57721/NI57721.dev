@@ -2,6 +2,10 @@ import * as THREE from 'three';
 import { Line } from '@react-three/drei';
 import ConstellationLinePairs from './data/constellation-lines.json';
 
+type Vec3 = [number, number, number];
+type Pair = [Vec3 , Vec3];
+const pairs = ConstellationLinePairs as Pair[];
+
 function arcBetween(
   a: [number, number, number],
   b: [number, number, number],
@@ -34,10 +38,7 @@ type ConstellationLinesProps = {
 };
 
 function ConstellationLines({ distance }: ConstellationLinesProps) {
-  const lines = ConstellationLinePairs.map((a, i) => {
-    if (a[1] === null) {
-      return;
-    }
+  const lines = pairs.map((a, i) => {
     const arcPts = arcBetween(a[0], a[1], distance * 0.99);
     return <Line key={i} points={arcPts} color="#ff4" lineWidth={1} />;
   });

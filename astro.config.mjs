@@ -1,16 +1,16 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import icon from "astro-icon";
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://NI57721.dev',
+  site: "https://NI57721.dev",
   markdown: {
     shikiConfig: {
-      theme: 'dracula',
+      theme: "dracula",
       wrap: true,
-    }
+    },
   },
   vite: {
     css: {

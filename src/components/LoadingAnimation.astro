@@ -45,9 +45,8 @@
 </style>
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-
-    if(finalizeLoadingIfReady()) {
+  window.addEventListener("DOMContentLoaded", () => {
+    if (finalizeLoadingIfReady()) {
       return;
     }
     const interval = setInterval(() => {
@@ -57,8 +56,8 @@
   });
 
   function finalizeLoadingIfReady() {
-    const loadedElements = document.querySelectorAll('[data-loading]');
-    const animationElement = document.querySelector('#loading-animation');
+    const loadedElements = document.querySelectorAll("[data-loading]");
+    const animationElement = document.querySelector("#loading-animation");
 
     for (const e of loadedElements) {
       if (!loadedAllImagesIn(e)) {
@@ -66,17 +65,17 @@
       }
     }
     for (const e of loadedElements) {
-      e.removeAttribute('data-loading');
+      e.removeAttribute("data-loading");
     }
-    if(!animationElement) {
+    if (!animationElement) {
       return;
     }
-    animationElement.setAttribute('data-done', '');
+    animationElement.setAttribute("data-done", "");
     return true;
   }
 
   function loadedAllImagesIn(element: Element): Boolean {
-    const imgChildren = element.querySelectorAll('img');
+    const imgChildren = element.querySelectorAll("img");
     for (const e of imgChildren) {
       if (!e.complete) {
         return false;
@@ -92,4 +91,3 @@
     <slot />
   </div>
 </section>
-

@@ -1,5 +1,5 @@
 ---
-import SNSLink from '@/components/SNSLink.astro';
+import SNSLink from "@/components/SNSLink.astro";
 
 type item = {
   icon: string;
@@ -8,19 +8,20 @@ type item = {
 
 const items: item[] = [
   {
-    icon: 'mdi:github',
-    url: 'https://github.com/NI57721',
+    icon: "mdi:github",
+    url: "https://github.com/NI57721",
   },
   {
-    icon: 'prime:twitter',
-    url: 'https://x.com/NI57721',
+    icon: "prime:twitter",
+    url: "https://x.com/NI57721",
   },
   {
-    icon: 'ri:bluesky-fill',
-    url: 'https://bsky.app/profile/ni57721.bsky.social',
+    icon: "ri:bluesky-fill",
+    url: "https://bsky.app/profile/ni57721.bsky.social",
   },
 ];
 ---
+
 <style lang="scss">
   footer {
     border-top: solid 1px var.$grey-01;
@@ -32,7 +33,7 @@ const items: item[] = [
       min-width: var.$content-width;
     }
     @include mixin.mobile-view {
-      margin-block: 10vw .5vw;
+      margin-block: 10vw 0.5vw;
       padding-inline: 3vw;
     }
   }
@@ -90,15 +91,16 @@ const items: item[] = [
   <ul>
     <li>
       <ul>
-        { items.map((item) =>
-          <li>
-            <SNSLink icon={item.icon} url={item.url}/>
-          </li>
-        )}
+        {
+          items.map((item) => (
+            <li>
+              <SNSLink icon={item.icon} url={item.url} />
+            </li>
+          ))
+        }
       </ul>
     </li>
     <li><a href="/legal">LEGAL</a></li>
     <li>&copy;NI57721 All Rights Reserved</li>
   </ul>
 </footer>
-

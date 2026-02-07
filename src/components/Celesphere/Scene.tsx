@@ -1,20 +1,20 @@
-import * as THREE from 'three'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import StarDots from './StarDots';
-import ConstellationLines from './ConstellationLines'
+import * as THREE from "three";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import StarDots from "./StarDots";
+import ConstellationLines from "./ConstellationLines";
 
 type SphereProps = {
   radius: number;
 };
 
-function Sphere({ radius }: SphereProps ) {
+function Sphere({ radius }: SphereProps) {
   return (
     <mesh>
       <sphereGeometry args={[radius, 64, 64]} />
       <meshPhysicalMaterial color="#003" side={THREE.BackSide} />
     </mesh>
-  )
+  );
 }
 
 type SceneProps = {
@@ -25,7 +25,7 @@ type SceneProps = {
 function Scene({ magnitudeCap, lined }: SceneProps) {
   const radius = 10;
 
-  return(
+  return (
     <Canvas camera={{ position: [0, 0, 1] }}>
       <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
       <Sphere radius={radius} />
@@ -37,4 +37,3 @@ function Scene({ magnitudeCap, lined }: SceneProps) {
 }
 
 export default Scene;
-

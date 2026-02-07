@@ -6,19 +6,20 @@ type item = {
 
 const items: item[] = [
   {
-    name: 'NI57721',
-    path: '/',
+    name: "NI57721",
+    path: "/",
   },
   {
-    name: 'Profile',
-    path: '/profile',
+    name: "Profile",
+    path: "/profile",
   },
   {
-    name: 'Blog',
-    path: '/blog',
+    name: "Blog",
+    path: "/blog",
   },
 ];
 ---
+
 <style lang="scss">
   header {
     background-color: var.$green-02;
@@ -72,13 +73,12 @@ const items: item[] = [
 
 <header>
   <ul>
-     { items.map((item) =>
-       <li>
-         <a href={item.path}>
-           {item.name}
-         </a>
-       </li>
-     )}
+    {
+      items.map((item) => (
+        <li>
+          <a href={item.path}>{item.name}</a>
+        </li>
+      ))
+    }
   </ul>
 </header>
-

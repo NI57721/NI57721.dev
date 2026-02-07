@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { useState } from 'react';
-import Controller from './Controller';
-import Scene from './Scene';
+import { css } from "@emotion/react";
+import { useState } from "react";
+import Controller from "./Controller";
+import Scene from "./Scene";
 
 type CelesphereProps = {
   backgroundColor: string;
@@ -11,27 +11,24 @@ type CelesphereProps = {
 function Celesphere({ backgroundColor }: CelesphereProps) {
   const style = css({
     backgroundColor: backgroundColor,
-    height: '100vh',
-    position: 'relative',
-    width: '100vw',
+    height: "100vh",
+    position: "relative",
+    width: "100vw",
   });
   const [magnitudeCap, setMagnitudeCap] = useState(8.5);
   const [lined, setLined] = useState(true);
 
   function handleMagnitudeCapPinch(m: number) {
     setMagnitudeCap(m);
-  };
+  }
 
   function handleLinedChange(b: boolean) {
     setLined(b);
-  };
+  }
 
-  return(
+  return (
     <div css={style}>
-      <Scene
-        magnitudeCap={magnitudeCap}
-        lined={lined}
-      />
+      <Scene magnitudeCap={magnitudeCap} lined={lined} />
       <Controller
         magnitudeCap={magnitudeCap}
         handleMagnitudeCapPinch={handleMagnitudeCapPinch}
@@ -43,4 +40,3 @@ function Celesphere({ backgroundColor }: CelesphereProps) {
 }
 
 export default Celesphere;
-

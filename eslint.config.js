@@ -1,7 +1,7 @@
-import js from '@eslint/js';
-import eslintPluginAstro from 'eslint-plugin-astro';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
+import js from "@eslint/js";
+import eslintPluginAstro from "eslint-plugin-astro";
+import eslintConfigPrettier from "eslint-config-prettier";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default [
   js.configs.recommended,
@@ -9,4 +9,3 @@ export default [
   ...eslintPluginAstro.configs.recommended,
   eslintConfigPrettier,
 ];
-

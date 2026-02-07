@@ -1,9 +1,9 @@
-import * as THREE from 'three';
-import { Line } from '@react-three/drei';
-import ConstellationLinePairs from './data/constellation-lines.json';
+import * as THREE from "three";
+import { Line } from "@react-three/drei";
+import ConstellationLinePairs from "./data/constellation-lines.json";
 
 type Vec3 = [number, number, number];
-type Pair = [Vec3 , Vec3];
+type Pair = [Vec3, Vec3];
 const pairs = ConstellationLinePairs as Pair[];
 
 function arcBetween(
@@ -43,12 +43,7 @@ function ConstellationLines({ distance }: ConstellationLinesProps) {
     return <Line key={i} points={arcPts} color="#ff4" lineWidth={1} />;
   });
 
-  return (
-    <>
-      {lines}
-    </>
-  );
-};
+  return <>{lines}</>;
+}
 
 export default ConstellationLines;
-

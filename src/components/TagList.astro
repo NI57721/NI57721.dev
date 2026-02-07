@@ -1,12 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-const posts = await getCollection('posts');
+const posts = await getCollection("posts");
 const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
-const tagCount: Map<string, number> = new Map(uniqueTags.map((tag: string): [string, number] => {
-  return [tag, posts.filter((post: any) => post.data.tags.includes(tag)).length];
-}));
+const tagCount: Map<string, number> = new Map(
+  uniqueTags.map((tag: string): [string, number] => {
+    return [
+      tag,
+      posts.filter((post: any) => post.data.tags.includes(tag)).length,
+    ];
+  }),
+);
 ---
+
 <style lang="scss">
   ul {
     display: grid;
@@ -37,9 +43,10 @@ const tagCount: Map<string, number> = new Map(uniqueTags.map((tag: string): [str
           return yCount - xCount;
         }
       })
-      .map((tag: string) =>
-        <li><a href={'/blog/tag/' + tag}>{tag}</a> [{tagCount.get(tag)}]</li>
-      )
+      .map((tag: string) => (
+        <li>
+          <a href={"/blog/tag/" + tag}>{tag}</a> [{tagCount.get(tag)}]
+        </li>
+      ))
   }
 </ul>
-

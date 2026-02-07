@@ -1,4 +1,4 @@
-@use 'variables';
+@use "variables";
 
 @mixin mobile-view {
   @media screen and (max-width: variables.$breakpoint-for-mobile) {
@@ -17,4 +17,3 @@
     @content;
   }
 }
-

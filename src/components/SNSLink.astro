@@ -1,8 +1,9 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
 const { icon, url } = Astro.props;
 ---
+
 <style lang="scss">
   a {
     color: var.$green-02;
@@ -13,7 +14,7 @@ const { icon, url } = Astro.props;
       font-size: 10vw;
     }
     &:hover {
-     color: var.$green-01;
+      color: var.$green-01;
     }
   }
 </style>
@@ -21,4 +22,3 @@ const { icon, url } = Astro.props;
 <a href={url}>
   <Icon name={icon} />
 </a>
-

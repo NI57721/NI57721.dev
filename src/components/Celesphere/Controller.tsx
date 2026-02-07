@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 type SliderProps = {
   magnitudeCap: number;
@@ -8,12 +8,12 @@ type SliderProps = {
 
 function Slider({ magnitudeCap, handleMagnitudeCapPinch }: SliderProps) {
   const style = css({
-    backgroundColor: '#99f',
-    direction: 'rtl',
+    backgroundColor: "#99f",
+    direction: "rtl",
     height: 4,
   });
 
-  return(
+  return (
     <div>
       <p>Apparent Magnitude</p>
       <input
@@ -41,7 +41,7 @@ function Liner({ lined, handleLinedChange }: LinerProps) {
     width: 24,
   });
 
-  return(
+  return (
     <div>
       <input
         css={style}
@@ -63,25 +63,32 @@ type ControllerProps = {
   handleLinedChange: Function;
 };
 
-function Controller({ magnitudeCap, handleMagnitudeCapPinch, lined, handleLinedChange }: ControllerProps) {
+function Controller({
+  magnitudeCap,
+  handleMagnitudeCapPinch,
+  lined,
+  handleLinedChange,
+}: ControllerProps) {
   const style = css({
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     fontSize: 16,
     padding: 8,
-    position: 'absolute',
+    position: "absolute",
     right: 0,
-    textAlign: 'center',
+    textAlign: "center",
     top: 0,
     width: 180,
   });
 
-  return(
+  return (
     <div css={style}>
-      <Slider magnitudeCap={magnitudeCap} handleMagnitudeCapPinch={handleMagnitudeCapPinch} />
+      <Slider
+        magnitudeCap={magnitudeCap}
+        handleMagnitudeCapPinch={handleMagnitudeCapPinch}
+      />
       <Liner lined={lined} handleLinedChange={handleLinedChange} />
     </div>
   );
 }
 
 export default Controller;
-

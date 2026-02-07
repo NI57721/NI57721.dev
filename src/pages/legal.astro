@@ -1,9 +1,10 @@
 ---
-import Base from '@/layouts/Base.astro';
-import LegalItem from '@/components/LegalItem.astro';
+import Base from "@/layouts/Base.astro";
+import LegalItem from "@/components/LegalItem.astro";
 
-const title = 'Legal';
+const title = "Legal";
 ---
+
 <style lang="scss">
   h1 {
     font-size: 28px;
@@ -23,21 +24,40 @@ const title = 'Legal';
   {
     [
       {
-        name: 'Remix Icon', url: 'https://github.com/Remix-Design/RemixIcon',
-        licence: 'Apache 2.0', licenceUrl: 'https://github.com/Remix-Design/RemixIcon/blob/master/License',
+        name: "Remix Icon",
+        url: "https://github.com/Remix-Design/RemixIcon",
+        licence: "Apache 2.0",
+        licenceUrl:
+          "https://github.com/Remix-Design/RemixIcon/blob/master/License",
       },
       {
-        name: 'Material Design', url: 'https://github.com/Templarian/MaterialDesign',
-        licence: 'Apache 2.0', licenceUrl: 'https://github.com/Templarian/MaterialDesign/blob/master/LICENSE',
+        name: "Material Design",
+        url: "https://github.com/Templarian/MaterialDesign",
+        licence: "Apache 2.0",
+        licenceUrl:
+          "https://github.com/Templarian/MaterialDesign/blob/master/LICENSE",
       },
       {
-        name: 'PrimeIcons', url: 'https://github.com/primefaces/primeicons',
-        licence: 'MIT', licenceUrl: 'https://github.com/primefaces/primeicons/blob/master/LICENSE',
+        name: "PrimeIcons",
+        url: "https://github.com/primefaces/primeicons",
+        licence: "MIT",
+        licenceUrl:
+          "https://github.com/primefaces/primeicons/blob/master/LICENSE",
       },
-    ].map((licenceData: {name: string, url: string, licence: string, licenceUrl: string}) =>
-    <LegalItem name={licenceData.name} url={licenceData.url} licence={licenceData.licence}
-      licenceUrl={licenceData.licenceUrl} />
+    ].map(
+      (licenceData: {
+        name: string;
+        url: string;
+        licence: string;
+        licenceUrl: string;
+      }) => (
+        <LegalItem
+          name={licenceData.name}
+          url={licenceData.url}
+          licence={licenceData.licence}
+          licenceUrl={licenceData.licenceUrl}
+        />
+      ),
     )
   }
 </Base>
-

@@ -7,20 +7,24 @@ const description = "Web site managed by a web engineer";
 type item = {
   name: string;
   path: string;
+  marker: string;
 };
 
 const items: item[] = [
   {
     name: "Profile",
     path: "/profile",
+    marker: "😄",
   },
   {
     name: "Blog",
     path: "/blog",
+    marker: "📝",
   },
   {
     name: "Celesphere",
     path: "/celesphere",
+    marker: "⭐",
   },
 ];
 ---
@@ -68,14 +72,9 @@ const items: item[] = [
     @include mixin.mobile-view {
       margin-bottom: 8vw;
     }
-    &:first-child {
-      list-style-type: "😄";
-    }
-    &:nth-child(2) {
-      list-style-type: "📝";
-    }
-    &:nth-child(3) {
-      list-style-type: "⭐";
+
+    &::marker {
+      content: var(--marker);
     }
   }
 
@@ -103,7 +102,7 @@ const items: item[] = [
   <ul>
     {
       items.map((item) => (
-        <li>
+        <li style={`--marker: "${item.marker}"`}>
           <a href={item.path}>{item.name}</a>
         </li>
       ))

@@ -1,0 +1,31 @@
+---
+import Base from "@/layouts/Base.astro";
+
+const title = "404 | NI57721";
+const description = "Web site managed by a web engineer";
+---
+
+<style lang="scss">
+  div {
+    padding-block: 16px;
+    @include mixin.mobile-view {
+      padding-block: 3vw;
+      margin-bottom: 3vw;
+    }
+  }
+
+  p {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: left;
+  }
+</style>
+
+<Base title={title} description={description}>
+  <div>
+    <p>
+      The page you are looking for cannot be found.
+    </p>
+  </div>
+</Base>

@@ -11,6 +11,11 @@ help:
 dev:
 	pnpm run dev --host
 
+## login: Log in Cloudflare.
+.PHONY: login
+login:
+	pnpm wrangler login
+
 ## upgrade: Upgrade dependencies.
 .PHONY: upgrade
 upgrade:

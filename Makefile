@@ -59,4 +59,3 @@ upload-raw:
 ## cur: Convert image files and then upload and remove them.
 .PHONY: cur
 cur: delete-exif convert upload-converted remove-converted
-

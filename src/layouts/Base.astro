@@ -4,7 +4,13 @@ import Header from "@/components/Header.astro";
 import LoadingAnimation from "@/components/LoadingAnimation.astro";
 import Footer from "@/components/Footer.astro";
 
-const { title, description, lang = "ja" } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description, lang } = Astro.props;
 ---
 
 <style lang="scss">

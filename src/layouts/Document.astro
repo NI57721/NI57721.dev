@@ -1,12 +1,33 @@
 ---
+import { SITE } from "@/config/site";
 import "@/styles/_reset.scss";
 
-const { title, description, lang = "ja" } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description, lang } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.name}` : SITE.name;
+const pageDescription = description || SITE.description;
+const pageLocale = locale(lang);
+
+function locale(lang: string | undefined): string {
+  switch (lang) {
+    case "ja":
+      return "ja_JP";
+    case "en":
+      return "en_GB";
+    default:
+      return "en_GB";
+  }
+}
 ---
 
 <html lang={lang}>
   <head prefix="og: https://ogp.me/ns#">
-    <title>{title}</title>
+    <title>{pageTitle}</title>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -14,16 +35,19 @@ const { title, description, lang = "ja" } = Astro.props;
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="description" content={description} />
-    <meta name="keywords" content="NI57721, Vim, Neovim" />
+    <meta name="description" content={pageDescription} />
+    <meta
+      name="keywords"
+      content="NI57721, Vim, Neovim, Astronomy, Art, Philosphy"
+    />
     <meta name="generator" content={Astro.generator} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://NI57721.dev/" />
     <meta property="og:image" content="https://NI57721.dev/path/to/ogp.jpg" />
-    <meta property="og:site_name" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content={pageLocale} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@NI57721" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

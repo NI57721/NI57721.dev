@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("posts");
+const { lang } = Astro.props;
+const collection = lang === "ja" ? "postsJa" : "postsEn";
+const posts = await getCollection(collection);
+const base = lang === "ja" ? "/ja/blog/tag/" : "/blog/tag/";
 const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
 const tagCount: Map<string, number> = new Map(
   uniqueTags.map((tag: string): [string, number] => {
@@ -45,7 +48,7 @@ const tagCount: Map<string, number> = new Map(
       })
       .map((tag: string) => (
         <li>
-          <a href={"/blog/tag/" + tag}>{tag}</a> [{tagCount.get(tag)}]
+          <a href={base + tag}>{tag}</a> [{tagCount.get(tag)}]
         </li>
       ))
   }

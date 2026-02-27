@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 
-const { tag } = Astro.props;
-const posts = await getCollection("posts");
+const { tag, lang } = Astro.props;
+const collection = lang === "ja" ? "postsJa" : "postsEn";
+const posts = await getCollection(collection);
 const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
+const base = lang === "ja" ? "/ja/blog/" : "/blog/";
 ---
 
 <style lang="scss">
@@ -34,7 +36,7 @@ const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
       .sort((x, y) => y.data.publishDate.localeCompare(x.data.publishDate))
       .map((post) => (
         <li>
-          <a href={"/blog/" + post.id}>{post.data.title}</a> -{" "}
+          <a href={base + post.id}>{post.data.title}</a> -{" "}
           {post.data.publishDate}
         </li>
       ))

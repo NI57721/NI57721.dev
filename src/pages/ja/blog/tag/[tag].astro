@@ -6,7 +6,7 @@ import PostsWithTag from "@/components/PostsWithTag.astro";
 const { tag } = Astro.params;
 
 export async function getStaticPaths() {
-  const posts = await getCollection("postsEn");
+  const posts = await getCollection("postsJa");
   const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
   return uniqueTags.map((tag: string) => {
     return {
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   }
 </style>
 
-<Base title={"tag: " + tag}>
-  <h1>Entries tagged "{tag}"</h1>
-  <PostsWithTag tag={tag} lang="en" />
+<Base title={"タグ: " + tag} lang="ja">
+  <h1>タグ "{tag}" の記事</h1>
+  <PostsWithTag tag={tag} lang="ja" />
 </Base>

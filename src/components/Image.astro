@@ -1,0 +1,15 @@
+---
+const { name, alt = "" } = Astro.props;
+const origin = "https://r2.NI57721.dev";
+const pathname = Astro?.url?.pathname?.replace(/^\/+|\/+$/g, "") || "";
+const url = `${origin}/${pathname}/${name}`;
+---
+
+<style lang="scss">
+  img {
+    display: block;
+    width: 100%;
+  }
+</style>
+
+<img src={url} alt={alt} />

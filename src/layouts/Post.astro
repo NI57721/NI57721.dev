@@ -25,7 +25,9 @@ const { frontmatter, lang } = Astro.props;
   description={frontmatter.description}
   lang={lang}
 >
-  <h1>{frontmatter.title}</h1>
+  <h1>
+    <span transition:name={Astro.params.slug} set:html={frontmatter.title} />
+  </h1>
   <p>publish: {frontmatter.publishDate}</p>
   {
     frontmatter.updatedDate !== undefined && (

@@ -48,7 +48,10 @@ const tagCount: Map<string, number> = new Map(
       })
       .map((tag: string) => (
         <li>
-          <a href={base + tag}>{tag}</a> [{tagCount.get(tag)}]
+          <a transition:name={tag} href={base + tag}>
+            {tag}
+          </a>{" "}
+          [{tagCount.get(tag)}]
         </li>
       ))
   }

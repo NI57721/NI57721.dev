@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config/site";
 import "@/styles/_reset.scss";
 
@@ -51,6 +52,7 @@ function locale(lang: string | undefined): string {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@NI57721" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
   </head>
 
   <body>

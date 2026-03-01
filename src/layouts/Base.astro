@@ -1,7 +1,6 @@
 ---
 import Document from "@/layouts/Document.astro";
 import Header from "@/components/Header.astro";
-import LoadingAnimation from "@/components/LoadingAnimation.astro";
 import Footer from "@/components/Footer.astro";
 
 interface Props {
@@ -29,7 +28,6 @@ const { title, description, lang } = Astro.props;
 
 <Document title={title} description={description} lang={lang}>
   <Header />
-  <LoadingAnimation />
   <main class="main" role="main" data-loading>
     <slot />
   </main>

@@ -31,6 +31,6 @@ export async function getStaticPaths() {
 </style>
 
 <Base title={"tag: " + tag}>
-  <h1>Entries tagged "{tag}"</h1>
+  <h1>Entries tagged "<span transition:name={tag}>{tag}</span>"</h1>
   <PostsWithTag tag={tag} lang="en" />
 </Base>

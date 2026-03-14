@@ -22,6 +22,7 @@
     "astro-icon": "^1.1.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "rehype-footnotes-customize": "^1.0.0",
     "three": "^0.180.0",
     "typescript": "^5.8.3"
   },

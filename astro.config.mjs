@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import icon from "astro-icon";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
+import rehypeFootnotesCustomize from "rehype-footnotes-customize";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,5 +26,21 @@ export default defineConfig({
       },
     },
   },
-  integrations: [icon(), react(), mdx()],
+  integrations: [
+    icon(),
+    react(),
+    mdx({
+      rehypePlugins: [
+        [
+          rehypeFootnotesCustomize,
+          [
+            {
+              path: "src/content/blog/ja/",
+              footnoteLabel: "脚注",
+            },
+          ],
+        ],
+      ],
+    }),
+  ],
 });

@@ -47,6 +47,9 @@ importers:
       react-dom:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
+      rehype-footnotes-customize:
+        specifier: ^1.0.0
+        version: 1.0.0
       three:
         specifier: ^0.180.0
         version: 0.180.0
@@ -3236,6 +3239,14 @@ packages:
   regexp.prototype.flags@1.5.4:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
+
+  rehype-footnotes-customize@1.0.0:
+    resolution: {integrity: sha512-1offLzmArKmSPMCQRH97b0eZUye5ebJa22CWBUiScHOkVdqR3VkGsZ/uQcccCWgvKhanD6qfhvGsudYuqgt9og==}
+    peerDependencies:
+      remark-rehype: ^10.0.1
+    peerDependenciesMeta:
+      remark-rehype:
+        optional: true
 
   rehype-parse@9.0.1:
     resolution: {integrity: sha512-ksCzCD0Fgfh7trPDxr2rSylbwq9iYDkSn8TCDmEJ49ljEUBxDVCzCHv7QNzZOfODanX4+bWQ4WZqLCRWYLfhag==}
@@ -7838,6 +7849,10 @@ snapshots:
       get-proto: 1.0.1
       gopd: 1.2.0
       set-function-name: 2.0.2
+
+  rehype-footnotes-customize@1.0.0:
+    dependencies:
+      unist-util-visit: 5.1.0
 
   rehype-parse@9.0.1:
     dependencies:

@@ -1,0 +1,18 @@
+---
+import StarGuessrApp from '@/components/StarGuessr/';
+import Document from "@/layouts/Document.astro";
+
+const title = "StarGuessr";
+const description = "StarGuessr";
+---
+
+<style lang="scss">
+  html,
+  body {
+    background-color: #003;
+  }
+</style>
+
+<Document title={title} description={description}>
+  <StarGuessrApp client:only="react" lang="en" />
+</Document>

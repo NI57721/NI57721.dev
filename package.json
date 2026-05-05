@@ -24,6 +24,7 @@
     "react-dom": "^19.1.1",
     "rehype-footnotes-customize": "^1.0.0",
     "three": "^0.180.0",
+    "three-stdlib": "^2.36.1",
     "typescript": "^5.8.3"
   },
   "devDependencies": {

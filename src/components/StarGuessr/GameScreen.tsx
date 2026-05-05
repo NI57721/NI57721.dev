@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import type { GameMode, Lang } from './StarGuessrApp';
-import { CelestialSphere } from './CelestialSphere';
-import { text } from './text';
+import type { GameMode, Lang } from "./";
+import { CelestialSphere } from "./CelestialSphere";
+import { text } from "./text";
 
 type Props = {
   lang: Lang;

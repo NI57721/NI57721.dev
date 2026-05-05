@@ -1,5 +1,5 @@
-import type { GameMode, Lang } from './StarGuessrApp';
-import { text } from './text';
+import type { GameMode, Lang } from "./";
+import { text } from "./text";
 
 type Props = {
   lang: Lang;
@@ -19,16 +19,16 @@ export function MenuScreen({ lang, mode, onModeChange, onStart }: Props) {
       <div>
         <button
           type="button"
-          aria-pressed={mode === 'noHint'}
-          onClick={() => onModeChange('noHint')}
+          aria-pressed={mode === "noHint"}
+          onClick={() => onModeChange("noHint")}
         >
           {t.noHint}
         </button>
 
         <button
           type="button"
-          aria-pressed={mode === 'hint'}
-          onClick={() => onModeChange('hint')}
+          aria-pressed={mode === "hint"}
+          onClick={() => onModeChange("hint")}
         >
           {t.hint}
         </button>

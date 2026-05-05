@@ -31,7 +31,7 @@ function Scene({ magnitudeCap, lined }: SceneProps) {
       <Sphere radius={radius} />
       <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
       {lined && <ConstellationLines distance={radius} />}
-      <OrbitControls />
+      <OrbitControls rotateSpeed={-1} />
     </Canvas>
   );
 }

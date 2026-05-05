@@ -7,7 +7,8 @@ import ConstellationLines from "./ConstellationLines";
 
 const MIN_FOV = 8;
 const MAX_FOV = 100;
-const FOV_ZOOM_SPEED = 0.03;
+const WHEEL_FOV_ZOOM_SPEED = 0.03;
+const PINCH_FOV_ZOOM_SPEED = 0.812;
 
 type SphereProps = {
   radius: number;
@@ -22,6 +23,20 @@ function Sphere({ radius }: SphereProps) {
   );
 }
 
+function getTouchDistance(event: TouchEvent): number | null {
+  if (event.touches.length < 2) {
+    return null;
+  }
+
+  const [a, b] = event.touches;
+
+  if (a === undefined || b === undefined) {
+    return null;
+  }
+
+  return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+}
+
 function FovZoomControls() {
   const { camera, gl } = useThree();
 
@@ -31,23 +46,74 @@ function FovZoomControls() {
     }
 
     const element = gl.domElement;
+    let previousTouchDistance: number | null = null;
+
+    const setFov = (fov: number) => {
+      camera.fov = THREE.MathUtils.clamp(fov, MIN_FOV, MAX_FOV);
+      camera.updateProjectionMatrix();
+    };
 
     const handleWheel = (event: WheelEvent) => {
       event.preventDefault();
 
-      camera.fov = THREE.MathUtils.clamp(
-        camera.fov + event.deltaY * FOV_ZOOM_SPEED,
-        MIN_FOV,
-        MAX_FOV,
-      );
+      setFov(camera.fov + event.deltaY * WHEEL_FOV_ZOOM_SPEED);
+    };
 
-      camera.updateProjectionMatrix();
+    const handleTouchStart = (event: TouchEvent) => {
+      if (event.touches.length !== 2) {
+        previousTouchDistance = null;
+        return;
+      }
+
+      event.preventDefault();
+      previousTouchDistance = getTouchDistance(event);
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (event.touches.length !== 2 || previousTouchDistance === null) {
+        previousTouchDistance = null;
+        return;
+      }
+
+      event.preventDefault();
+
+      const distance = getTouchDistance(event);
+
+      if (distance === null) {
+        return;
+      }
+
+      const delta = distance - previousTouchDistance;
+
+      setFov(camera.fov - delta * PINCH_FOV_ZOOM_SPEED);
+
+      previousTouchDistance = distance;
+    };
+
+    const handleTouchEnd = () => {
+      previousTouchDistance = null;
     };
 
     element.addEventListener("wheel", handleWheel, { passive: false });
+    element.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    element.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    element.addEventListener("touchend", handleTouchEnd);
+    element.addEventListener("touchcancel", handleTouchEnd);
+
+    element.style.touchAction = "none";
 
     return () => {
       element.removeEventListener("wheel", handleWheel);
+      element.removeEventListener("touchstart", handleTouchStart);
+      element.removeEventListener("touchmove", handleTouchMove);
+      element.removeEventListener("touchend", handleTouchEnd);
+      element.removeEventListener("touchcancel", handleTouchEnd);
+
+      element.style.touchAction = "";
     };
   }, [camera, gl]);
 

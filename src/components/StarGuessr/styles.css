@@ -1,0 +1,244 @@
+.sg-menu,
+.sg-game {
+  color: #eff3ff;
+  font-family: system-ui, sans-serif;
+  background: #030819;
+}
+.sg-menu *,
+.sg-game * {
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+.sg-menu {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at 20% 0%, #243c62 0%, transparent 55%), #030819;
+}
+.sg-panel {
+  background: #0c1428ed;
+  border: 1px solid #ffffff24;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 12px 45px #0003;
+}
+.sg-intro {
+  width: min(620px, 100%);
+  padding: clamp(24px, 5vw, 48px);
+}
+.sg-menu h1 {
+  font-size: clamp(40px, 8vw, 64px);
+  letter-spacing: -0.05em;
+  margin: 12px 0;
+}
+.sg-menu p,
+.sg-game p {
+  margin: 10px 0;
+}
+.sg-eyebrow {
+  color: #a8c8ff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 12px;
+  font-weight: 700;
+}
+.sg-muted,
+.sg-game small {
+  color: #a4b2cc;
+  font-size: 13px;
+}
+.sg-modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 28px 0;
+}
+.sg-menu button,
+.sg-game button {
+  cursor: pointer;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: inherit;
+  background: #19253e;
+  font: inherit;
+}
+.sg-menu button:hover,
+.sg-game button:hover {
+  background: #2c3c59;
+}
+.sg-menu button:focus-visible,
+.sg-game button:focus-visible {
+  outline: 3px solid #a8c8ff;
+  outline-offset: 4px;
+}
+.sg-modes button {
+  text-align: left;
+}
+.sg-modes small {
+  display: block;
+  font-size: 12px;
+  color: #a4b2cc;
+  margin-top: 8px;
+}
+.sg-modes button[aria-pressed="true"] {
+  border-color: #91baff;
+  background: #223959;
+}
+.sg-menu .sg-primary,
+.sg-game .sg-primary {
+  background: #b8d4ff;
+  color: #101d32;
+  width: 100%;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.sg-game button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.sg-source {
+  text-align: center;
+  margin-top: 24px !important;
+}
+.sg-source a {
+  color: inherit;
+}
+.sg-game {
+  height: 100svh;
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
+}
+.sg-sky {
+  position: absolute;
+  inset: 0;
+}
+.sg-header {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+}
+.sg-game .sg-quiet {
+  background: transparent;
+  border-color: transparent;
+  font-size: 13px;
+}
+.sg-tag {
+  font-size: 11px;
+  color: #a4b2cc;
+  margin-left: 8px;
+}
+.sg-target {
+  position: absolute;
+  top: 100px;
+  left: 16px;
+  max-width: calc(100% - 32px);
+  pointer-events: none;
+}
+.sg-target h1 {
+  font-size: 40px;
+  line-height: 1;
+  margin: 12px 0;
+}
+.sg-action {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: min(370px, calc(100% - 32px));
+}
+.sg-action h2 {
+  font-size: 32px;
+  margin: 4px 0;
+}
+.sg-pink {
+  color: #ff789b;
+}
+.sg-green {
+  color: #69f0ae;
+}
+.sg-summary {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(480px, calc(100% - 32px));
+  max-height: 80%;
+  overflow: auto;
+}
+.sg-summary h1 {
+  font-size: 42px;
+  margin: 12px 0;
+}
+.sg-summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  text-align: left;
+}
+.sg-summary td,
+.sg-summary th {
+  padding: 8px;
+  border-bottom: 1px solid #ffffff20;
+}
+@media (max-width: 600px) {
+  .sg-header strong {
+    display: none;
+  }
+  .sg-target {
+    padding: 14px 20px;
+    top: 90px;
+  }
+  .sg-target h1 {
+    font-size: 30px;
+  }
+  .sg-action {
+    padding: 16px;
+  }
+  .sg-modes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sg-share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sg-share > * {
+  flex: 1;
+  text-align: center;
+}
+.sg-share-link {
+  display: inline-block;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: inherit;
+  background: #19253e;
+  text-decoration: none;
+}
+.sg-share-link:hover {
+  background: #2c3c59;
+}
+.sg-share-link:focus-visible {
+  outline: 3px solid #a8c8ff;
+  outline-offset: 4px;
+}
+.sg-share-text {
+  width: 100%;
+  min-height: 160px;
+  color: inherit;
+  background: #19253e;
+  padding: 12px;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+}

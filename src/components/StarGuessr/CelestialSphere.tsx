@@ -4,8 +4,10 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { TrackballControls } from "@react-three/drei";
 import type { TrackballControls as TrackballControlsImpl } from "three-stdlib";
 import StarDots from "./StarDots";
-import ConstellationLines from "./ConstellationLines";
 import type { GameMode } from "./";
+import ConstellationLines from "./ConstellationLines";
+import { ClickLayer, Marker } from "./ClickLayer";
+import { GuessReveal } from "./GuessReveal";
 
 const MIN_FOV = 8;
 const DEFAULT_FOV = 80;
@@ -149,6 +151,9 @@ function FovZoomControls({ controlsRef }: FovZoomControlsProps) {
 type SceneProps = {
   magnitudeCap: number;
   mode: GameMode;
+  selectedPosition: THREE.Vector3 | null;
+  answer: THREE.Vector3 | null;
+  onSelect: (position: THREE.Vector3) => void;
   lined: boolean;
 };
 
@@ -156,6 +161,9 @@ export function CelestialSphere({
   magnitudeCap,
   mode: _mode,
   lined,
+  selectedPosition,
+  answer,
+  onSelect,
 }: SceneProps) {
   const radius = 10;
   const controlsRef = useRef<TrackballControlsImpl | null>(null);
@@ -175,12 +183,35 @@ export function CelestialSphere({
       <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
       {lined && <ConstellationLines distance={radius} />}
 
+      {answer === null && (
+        <ClickLayer radius={radius * 0.98} onSelect={onSelect} />
+      )}
+      {answer !== null && (
+        <Marker
+          position={answer.clone().multiplyScalar(radius * 0.97)}
+          size={20}
+          color="#69f0ae"
+        />
+      )}
+
+      {selectedPosition !== null && (
+        <Marker position={selectedPosition} size={16} />
+      )}
+
+      {answer !== null && selectedPosition !== null && (
+        <GuessReveal
+          guess={selectedPosition}
+          answer={answer}
+          radius={radius * 0.975}
+          controlsRef={controlsRef}
+        />
+      )}
       <FovZoomControls controlsRef={controlsRef} />
 
       <TrackballControls
         ref={controlsRef}
         noZoom={true}
-        noPan={false}
+        noPan={true}
         rotateSpeed={getRotateSpeed(DEFAULT_FOV)}
         zoomSpeed={2}
         panSpeed={0.5}

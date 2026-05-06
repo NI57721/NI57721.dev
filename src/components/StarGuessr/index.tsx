@@ -1,3 +1,4 @@
+import "./styles.css";
 import { useState } from "react";
 import { MenuScreen } from "./MenuScreen";
 import { GameScreen } from "./GameScreen";

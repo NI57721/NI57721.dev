@@ -7,6 +7,8 @@ import StarDots from "./StarDots";
 import type { GameMode } from "./";
 import ConstellationLines from "./ConstellationLines";
 import { ClickLayer, Marker } from "./ClickLayer";
+import type { MarkerHandle } from "./ClickLayer";
+import { formatDec, formatRa, vectorToRaDec } from "./EquatorialCoordinates";
 
 const MIN_FOV = 8;
 const DEFAULT_FOV = 80;
@@ -160,47 +162,76 @@ export function CelestialSphere({
 }: SceneProps) {
   const radius = 10;
   const controlsRef = useRef<TrackballControlsImpl | null>(null);
+  const markerRef = useRef<MarkerHandle | null>(null);
+
   const [selectedPosition, setSelectedPosition] =
     useState<THREE.Vector3 | null>(null);
 
+  const selectedCoordinates =
+    selectedPosition === null ? null : vectorToRaDec(selectedPosition);
+
   return (
-    <Canvas
-      camera={{
-        position: [0, 0, 0.1],
-        fov: DEFAULT_FOV,
-        near: 0.001,
-        far: 1000,
-      }}
-    >
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-
-      <Sphere radius={radius} />
-      <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
-      {lined && <ConstellationLines distance={radius} />}
-
-      <ClickLayer
-        radius={radius * 0.98}
-        onSelect={(position) => {
-          setSelectedPosition(position);
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      <Canvas
+        camera={{
+          position: [0, 0, 0.1],
+          fov: DEFAULT_FOV,
+          near: 0.001,
+          far: 1000,
         }}
-      />
+      >
+        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
 
-      {selectedPosition !== null && (
-        <Marker position={selectedPosition} size={16} />
+        <Sphere radius={radius} />
+        <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
+        {lined && <ConstellationLines distance={radius} />}
+
+        <ClickLayer
+          radius={radius * 0.98}
+          onSelect={(position) => {
+            markerRef.current?.place(position);
+            setSelectedPosition(position.clone());
+          }}
+        />
+
+        <Marker ref={markerRef} size={16} />
+
+        <FovZoomControls controlsRef={controlsRef} />
+
+        <TrackballControls
+          ref={controlsRef}
+          noZoom={true}
+          noPan={false}
+          rotateSpeed={getRotateSpeed(DEFAULT_FOV)}
+          zoomSpeed={2}
+          panSpeed={0.5}
+          staticMoving={false}
+          dynamicDampingFactor={0.08}
+        />
+      </Canvas>
+
+      {selectedCoordinates !== null && (
+        <div
+          style={{
+            position: "absolute",
+            left: "1rem",
+            bottom: "1rem",
+            zIndex: 1,
+            padding: "0.75rem 1rem",
+            color: "white",
+            background: "rgb(0 0 0 / 0.72)",
+            border: "1px solid rgb(255 255 255 / 0.25)",
+            borderRadius: "0.5rem",
+            fontFamily: "monospace",
+            fontSize: "0.875rem",
+            lineHeight: 1.5,
+            pointerEvents: "none",
+          }}
+        >
+          <div>RA: {formatRa(selectedCoordinates.raDeg)}</div>
+          <div>Dec: {formatDec(selectedCoordinates.decDeg)}</div>
+        </div>
       )}
-
-      <FovZoomControls controlsRef={controlsRef} />
-
-      <TrackballControls
-        ref={controlsRef}
-        noZoom={true}
-        noPan={false}
-        rotateSpeed={getRotateSpeed(DEFAULT_FOV)}
-        zoomSpeed={2}
-        panSpeed={0.5}
-        staticMoving={false}
-        dynamicDampingFactor={0.08}
-      />
-    </Canvas>
+    </div>
   );
 }

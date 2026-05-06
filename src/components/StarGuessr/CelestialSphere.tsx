@@ -1,11 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas, useThree } from "@react-three/fiber";
 import { TrackballControls } from "@react-three/drei";
 import type { TrackballControls as TrackballControlsImpl } from "three-stdlib";
 import StarDots from "./StarDots";
-import ConstellationLines from "./ConstellationLines";
 import type { GameMode } from "./";
+import ConstellationLines from "./ConstellationLines";
+import { ClickLayer, Marker } from "./ClickLayer";
 
 const MIN_FOV = 8;
 const DEFAULT_FOV = 80;
@@ -159,6 +160,8 @@ export function CelestialSphere({
 }: SceneProps) {
   const radius = 10;
   const controlsRef = useRef<TrackballControlsImpl | null>(null);
+  const [selectedPosition, setSelectedPosition] =
+    useState<THREE.Vector3 | null>(null);
 
   return (
     <Canvas
@@ -174,6 +177,17 @@ export function CelestialSphere({
       <Sphere radius={radius} />
       <StarDots distance={radius * 0.99} magnitudeCap={magnitudeCap} />
       {lined && <ConstellationLines distance={radius} />}
+
+      <ClickLayer
+        radius={radius * 0.98}
+        onSelect={(position) => {
+          setSelectedPosition(position);
+        }}
+      />
+
+      {selectedPosition !== null && (
+        <Marker position={selectedPosition} size={16} />
+      )}
 
       <FovZoomControls controlsRef={controlsRef} />
 

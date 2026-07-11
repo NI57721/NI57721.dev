@@ -1,7 +1,12 @@
 .post-body {
-  & h1 {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
     border-bottom: solid 1px var.$grey-01;
-    font-size: 24px;
+    clear: both;
     font-weight: bold;
     margin-block: 16px 8px;
     @include mixin.mobile-view {
@@ -9,32 +14,22 @@
     }
   }
 
+  & h1 {
+    font-size: 24px;
+  }
+
   & h2 {
-    border-bottom: solid 1px var.$grey-01;
     font-size: 20px;
-    font-weight: bold;
-    margin-block: 16px 8px;
-    @include mixin.mobile-view {
-      margin-block: 3vw 2vw;
-    }
   }
 
   & h3 {
     font-size: 18px;
-    font-weight: bold;
-    margin-block: 16px 8px;
-    @include mixin.mobile-view {
-      margin-block: 3vw 2vw;
-    }
   }
 
-  & h4 {
+  & h4,
+  & h5,
+  & h6 {
     font-size: 16px;
-    font-weight: bold;
-    margin-block: 16px 8px;
-    @include mixin.mobile-view {
-      margin-block: 3vw 2vw;
-    }
   }
 
   & p {

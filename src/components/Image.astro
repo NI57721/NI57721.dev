@@ -1,15 +1,56 @@
 ---
-const { name, alt = "" } = Astro.props;
+const {
+  name,
+  location = "left",
+  caption = null,
+  captionLocation = "bottom",
+  alt = null,
+} = Astro.props;
 const origin = "https://r2.NI57721.dev";
 const pathname = Astro?.url?.pathname?.replace(/^\/+|\/+$/g, "") || "";
 const url = `${origin}/${pathname}/${name}`;
+
+let altText = alt;
+if (!altText && caption) {
+  altText = caption;
+}
 ---
 
 <style lang="scss">
+  figure {
+    display: block;
+    float: left;
+    width: 50%;
+    margin: 0 16px 16px 0;
+    &[data-location="right"] {
+      float: right;
+      margin: 0 0 16px 16px;
+    }
+    @include mixin.mobile-view {
+      float: none;
+      width: 100%;
+    }
+  }
+
   img {
     display: block;
+    margin: 0 0 2px;
     width: 100%;
+    figure[data-caption-location="top"] > & {
+      margin: 4px 0 0;
+    }
+  }
+
+  figcaption {
+    color: var.$grey-03;
+    font-size: 0.8em;
+    font-weight: normal;
+    text-align: right;
   }
 </style>
 
-<img src={url} alt={alt} />
+<figure data-location={location} data-caption-location={captionLocation}>
+  {caption && captionLocation === "top" && <figcaption set:text={caption} />}
+  <img src={url} alt={altText} />
+  {caption && captionLocation === "bottom" && <figcaption set:text={caption} />}
+</figure>

@@ -8,9 +8,9 @@
     border-bottom: solid 1px var.$grey-01;
     clear: both;
     font-weight: bold;
-    margin-block: 16px 8px;
+    margin-block: 32px 8px;
     @include mixin.mobile-view {
-      margin-block: 3vw 2vw;
+      margin-block: 6vw 2vw;
     }
   }
 

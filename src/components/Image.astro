@@ -1,0 +1,55 @@
+---
+const {
+  name,
+  caption = null,
+  captionLocation = "bottom",
+  alt = null,
+} = Astro.props;
+import { MEDIA_BASE_URL } from "astro:env/server";
+const pathname = Astro?.url?.pathname?.replace(/^\/+|\/+$/g, "") || "";
+const url = `${MEDIA_BASE_URL}/${pathname}/${name}`;
+
+let altText = alt;
+if (!altText && caption) {
+  altText = caption;
+}
+---
+
+<style lang="scss">
+  figure {
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+    @include mixin.mobile-view {
+      margin-bottom: 3vw;
+    }
+  }
+
+  img {
+    display: block;
+    margin: 0 0 2px;
+    width: 100%;
+    @include mixin.mobile-view {
+      margin-bottom: 1vw;
+    }
+    figure[data-caption-location="top"] > & {
+      margin: 4px 0 0;
+      @include mixin.mobile-view {
+        margin-top: 2vw;
+      }
+    }
+  }
+
+  figcaption {
+    color: var.$grey-03;
+    font-size: 0.8em;
+    font-weight: normal;
+    text-align: right;
+  }
+</style>
+
+<figure data-caption-location={captionLocation}>
+  {caption && captionLocation === "top" && <figcaption set:text={caption} />}
+  <img src={url} alt={altText} />
+  {caption && captionLocation === "bottom" && <figcaption set:text={caption} />}
+</figure>

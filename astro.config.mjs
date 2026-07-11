@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import icon from "astro-icon";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
@@ -9,6 +9,15 @@ import rehypeFootnotesCustomize from "rehype-footnotes-customize";
 // https://astro.build/config
 export default defineConfig({
   site: "https://NI57721.dev",
+  env: {
+    schema: {
+      MEDIA_BASE_URL: envField.string({
+        context: "server",
+        access: "public",
+        default: "https://r2.NI57721.dev",
+      }),
+    },
+  },
   markdown: {
     shikiConfig: {
       theme: "dracula",

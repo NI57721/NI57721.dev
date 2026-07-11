@@ -64,10 +64,16 @@
   & img {
     max-width: 100%;
     margin-bottom: 16px;
+    @include mixin.mobile-view {
+      margin-bottom: 3vw;
+    }
   }
 
   & ul {
     margin-bottom: 16px;
+    @include mixin.mobile-view {
+      margin-bottom: 3vw;
+    }
   }
 
   & ul ul {
@@ -77,6 +83,9 @@
   & ul > li {
     margin-left: 16px;
     list-style: disc;
+    @include mixin.mobile-view {
+      margin-left: 3vw;
+    }
     & ul > li {
       list-style: circle;
       & ul > li {

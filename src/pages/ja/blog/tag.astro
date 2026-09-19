@@ -1,0 +1,31 @@
+---
+import Base from "@/layouts/Base.astro";
+import TagList from "@/components/TagList.astro";
+
+const title = "Log";
+---
+
+<style lang="scss">
+  h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    @include mixin.mobile-view {
+      margin-bottom: 2vw;
+    }
+  }
+
+  section {
+    margin-bottom: 16px;
+    @include mixin.mobile-view {
+      margin-bottom: 3vw;
+    }
+  }
+</style>
+
+<Base title={title} lang="ja">
+  <section>
+    <h2>タグ一覧</h2>
+    <TagList lang="ja" />
+  </section>
+</Base>

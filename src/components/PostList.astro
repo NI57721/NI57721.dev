@@ -32,7 +32,7 @@ const base = lang === "ja" ? "/ja/blog/" : "/blog/";
 <ul>
   {
     posts
-      .sort((x, y) => y.data.publishDate.localeCompare(x.data.publishDate))
+      .sort()
       .map((post) => (
         <li>
           <a transition:name={post.id} href={base + post.id}>

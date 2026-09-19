@@ -4,8 +4,8 @@ import { z } from "astro/zod";
 
 const postSchema = z.object({
   title: z.string(),
-  publishDate: z.string(),
-  updatedDate: z.string().optional(),
+  publishDate: z.date(),
+  updatedDate: z.date().optional(),
   description: z.string().optional(),
   tags: z.array(z.string()),
 });

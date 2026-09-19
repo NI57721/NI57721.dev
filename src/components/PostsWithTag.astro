@@ -33,7 +33,7 @@ const base = lang === "ja" ? "/ja/blog/" : "/blog/";
 <ul>
   {
     filteredPosts
-      .sort((x, y) => y.data.publishDate.localeCompare(x.data.publishDate))
+      .sort()
       .map((post) => (
         <li>
           <a href={base + post.id}>{post.data.title}</a> -{" "}

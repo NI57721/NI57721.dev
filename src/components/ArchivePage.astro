@@ -1,0 +1,82 @@
+---
+import Base from "@/layouts/Base.astro";
+import PostList from "@/components/PostList.astro";
+import {
+  formatBlogDate,
+  formatBlogMonth,
+  formatBlogYear,
+  blogMonthName,
+} from "@/utils/blog";
+
+const { lang, year, month, day } = Astro.props as {
+  lang: "en" | "ja";
+  year: string;
+  month?: string;
+  day?: string;
+};
+const base = lang === "ja" ? "/ja/blog/" : "/blog/";
+const title =
+  day && month
+    ? formatBlogDate(year, month, day, lang)
+    : month
+      ? formatBlogMonth(year, month, lang)
+      : formatBlogYear(year, lang);
+---
+
+<style lang="scss">
+  h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+</style>
+
+<Base title={title} lang={lang}>
+  <h2>
+    {
+      lang === "ja" ? (
+        <>
+          {year && (
+            <>
+              <a href={`${base}${year}`}>{year}</a>年
+            </>
+          )}
+          {month && (
+            <>
+              <a href={`${base}${year}/${month}`}>{month}</a>月
+            </>
+          )}
+          {day && (
+            <>
+              <a href={`${base}${year}/${month}/${day}`}>{day}</a>日
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          {day && (
+            <>
+              <a href={`${base}${year}/${month}/${day}`}>{day}</a>{" "}
+            </>
+          )}
+          {month && (
+            <>
+              <a href={`${base}${year}/${month}`}>
+                {blogMonthName(month)}
+              </a>{" "}
+            </>
+          )}
+          {year && <a href={`${base}${year}`}>{year}</a>}
+        </>
+      )
+    }
+  </h2>
+  <PostList lang={lang} year={year} month={month} day={day} />
+</Base>

@@ -1,8 +1,11 @@
 ---
 import Base from "@/layouts/Base.astro";
 import "@/styles/post-body.scss";
+import { formatDateObject } from "@/utils/blog";
+import BlogDateLinks from "@/components/BlogDateLinks.astro";
 
 const { frontmatter, lang } = Astro.props;
+const [year, month, day] = Astro.params.slug!.split("/");
 ---
 
 <style lang="scss">
@@ -28,10 +31,16 @@ const { frontmatter, lang } = Astro.props;
   <h1>
     <span transition:name={Astro.params.slug} set:html={frontmatter.title} />
   </h1>
-  <p>publish: {frontmatter.publishDate}</p>
+  <p>
+    publish: <BlogDateLinks year={year} month={month} day={day} lang={lang} />
+    {lang === "ja" ? " " : ", "}
+    {
+      `${frontmatter.publishDate.getHours().toString().padStart(2, "0")}:${frontmatter.publishDate.getMinutes().toString().padStart(2, "0")}`
+    }
+  </p>
   {
     frontmatter.updatedDate !== undefined && (
-      <p>updated: {frontmatter.updatedDate}</p>
+      <p>updated: {formatDateObject(frontmatter.updatedDate, lang)}</p>
     )
   }
   <section class="post-body">

@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import "@/styles/post-body.scss";
+import { formatDateObject } from "@/utils/blog";
 
 const { frontmatter, lang } = Astro.props;
 ---
@@ -28,10 +29,10 @@ const { frontmatter, lang } = Astro.props;
   <h1>
     <span transition:name={Astro.params.slug} set:html={frontmatter.title} />
   </h1>
-  <p>publish: {frontmatter.publishDate}</p>
+  <p>publish: {formatDateObject(frontmatter.publishDate, lang)}</p>
   {
     frontmatter.updatedDate !== undefined && (
-      <p>updated: {frontmatter.updatedDate}</p>
+      <p>updated: {formatDateObject(frontmatter.updatedDate, lang)}</p>
     )
   }
   <section class="post-body">

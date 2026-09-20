@@ -1,10 +1,25 @@
 ---
 import { getCollection } from "astro:content";
+import { formatBlogDate } from "@/utils/blog";
 
-const { lang } = Astro.props;
+const { lang, year, month, day } = Astro.props as {
+  lang: "en" | "ja";
+  year?: string;
+  month?: string;
+  day?: string;
+};
 const collection = lang === "ja" ? "postsJa" : "postsEn";
-const posts = await getCollection(collection);
 const base = lang === "ja" ? "/ja/blog/" : "/blog/";
+const posts = (await getCollection(collection))
+  .filter((post) => {
+    const [postYear, postMonth, postDay] = post.id.split("/");
+    return (
+      (!year || postYear === year) &&
+      (!month || postMonth === month) &&
+      (!day || postDay === day)
+    );
+  })
+  .sort((a, b) => a.data.publishDate.getTime() - b.data.publishDate.getTime());
 ---
 
 <style lang="scss">
@@ -31,15 +46,18 @@ const base = lang === "ja" ? "/ja/blog/" : "/blog/";
 
 <ul>
   {
-    posts
-      .sort()
-      .map((post) => (
+    posts.map((post) => {
+      const [postYear, postMonth, postDay] = post.id.split("/");
+      const date = formatBlogDate(postYear, postMonth, postDay, lang);
+      return (
         <li>
           <a transition:name={post.id} href={base + post.id}>
             {post.data.title}
-          </a>{" "}
-          - {post.data.publishDate}
+          </a>
+          {" - "}
+          {date}
         </li>
-      ))
+      );
+    })
   }
 </ul>

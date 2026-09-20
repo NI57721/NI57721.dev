@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { formatBlogDate } from "@/utils/blog";
 
 const { tag, lang } = Astro.props;
 const collection = lang === "ja" ? "postsJa" : "postsEn";
@@ -32,13 +33,15 @@ const base = lang === "ja" ? "/ja/blog/" : "/blog/";
 
 <ul>
   {
-    filteredPosts
-      .sort()
-      .map((post) => (
-        <li>
-          <a href={base + post.id}>{post.data.title}</a> -{" "}
-          {post.data.publishDate}
-        </li>
-      ))
+    filteredPosts.sort().map((post) => (
+      <li>
+        <a href={base + post.id}>{post.data.title}</a>
+        {" - "}
+        {formatBlogDate(
+          ...(post.id.split("/").slice(0, 3) as [string, string, string]),
+          lang,
+        )}
+      </li>
+    ))
   }
 </ul>

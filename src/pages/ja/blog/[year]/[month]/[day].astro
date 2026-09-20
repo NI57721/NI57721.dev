@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import ArchivePage from "@/components/ArchivePage.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("postsJa");
+  const paths = new Set(
+    posts.map((post) => post.id.split("/").slice(0, 3).join("/")),
+  );
+  return [...paths].map((path) => {
+    const [year, month, day] = path.split("/");
+    return { params: { year, month, day } };
+  });
+}
+
+const { year, month, day } = Astro.params;
+---
+
+<ArchivePage lang="ja" year={year} month={month} day={day} />

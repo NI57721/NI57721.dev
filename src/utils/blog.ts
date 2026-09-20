@@ -44,6 +44,10 @@ export function formatBlogMonth(
   }
 }
 
+export function blogMonthName(month: string): string {
+  return monthNames[Number(month) - 1];
+}
+
 export function formatBlogYear(year: string, lang: BlogLanguage): string {
   if (lang === "ja") {
     return `${year}年`;

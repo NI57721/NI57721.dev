@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { formatBlogDate } from "@/utils/blog";
+import BlogDateLinks from "@/components/BlogDateLinks.astro";
 
 const { lang, year, month, day } = Astro.props as {
   lang: "en" | "ja";
@@ -19,7 +19,7 @@ const posts = (await getCollection(collection))
       (!day || postDay === day)
     );
   })
-  .sort((a, b) => a.data.publishDate.getTime() - b.data.publishDate.getTime());
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 ---
 
 <style lang="scss">
@@ -48,14 +48,18 @@ const posts = (await getCollection(collection))
   {
     posts.map((post) => {
       const [postYear, postMonth, postDay] = post.id.split("/");
-      const date = formatBlogDate(postYear, postMonth, postDay, lang);
       return (
         <li>
           <a transition:name={post.id} href={base + post.id}>
             {post.data.title}
           </a>
           {" - "}
-          {date}
+          <BlogDateLinks
+            year={postYear}
+            month={postMonth}
+            day={postDay}
+            lang={lang}
+          />
         </li>
       );
     })

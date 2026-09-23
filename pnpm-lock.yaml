@@ -56,6 +56,9 @@ importers:
       three:
         specifier: ^0.180.0
         version: 0.180.0
+      three-stdlib:
+        specifier: ^2.36.1
+        version: 2.36.1(three@0.180.0)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3

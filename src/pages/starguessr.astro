@@ -1,0 +1,26 @@
+---
+import StarGuessrApp from "@/components/StarGuessr/";
+import Document from "@/layouts/Document.astro";
+
+const title = "StarGuessr";
+const description =
+  "Explore the night sky and guess the positions of Messier objects. Play five rounds and share your StarGuessr score.";
+---
+
+<style lang="scss">
+  html,
+  body {
+    background-color: #003;
+  }
+</style>
+
+<Document
+  title={title}
+  description={description}
+  lang="en"
+  image="https://r2.NI57721.dev/starguessr/OGP.jpg"
+  canonicalUrl="https://NI57721.dev/starguessr/"
+  ogType="website"
+>
+  <StarGuessrApp client:only="react" lang="en" />
+</Document>

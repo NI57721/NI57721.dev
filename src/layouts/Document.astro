@@ -8,9 +8,19 @@ interface Props {
   title?: string;
   description?: string;
   lang?: string;
+  image?: string;
+  canonicalUrl?: string;
+  ogType?: "article" | "website";
 }
 
-const { title, description, lang } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  image = "https://NI57721.dev/path/to/ogp.jpg",
+  canonicalUrl = "https://NI57721.dev/",
+  ogType = "article",
+} = Astro.props;
 const pageTitle = title ? `${title} | ${SITE.name}` : SITE.name;
 const pageDescription = description || SITE.description;
 const pageLocale = locale(lang);
@@ -44,13 +54,16 @@ function locale(lang: string | undefined): string {
     />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://NI57721.dev/" />
-    <meta property="og:image" content="https://NI57721.dev/path/to/ogp.jpg" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={image} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:locale" content={pageLocale} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={image} />
     <meta name="twitter:site" content="@NI57721" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <ClientRouter />

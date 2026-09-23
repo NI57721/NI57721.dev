@@ -23,7 +23,7 @@ export const text = {
     submit: "Lock in guess",
     rules:
       "Five objects. One sky. Find each object and earn up to 5,000 points per round. Closer guesses score higher.",
-    catalogue: "A starter collection of 12 Messier objects.",
+    catalogue: "All 110 Messier objects. Five random targets each game.",
     hintDescription: "Constellation lines and a constellation clue.",
     noHintDescription: "Just the stars and your knowledge of the sky.",
     title: "StarGuessr",
@@ -57,7 +57,7 @@ export const text = {
     submit: "予想を確定",
     rules:
       "5つの天体を探しましょう。正解に近いほど高得点。各ラウンド最大5,000点です。",
-    catalogue: "12個のメシエ天体から出題します。",
+    catalogue: "全110個のメシエ天体から、毎回ランダムに5個を出題します。",
     hintDescription: "星座線と星座名を手がかりに探索。",
     noHintDescription: "星空の知識だけで挑戦。",
     title: "StarGuessr",

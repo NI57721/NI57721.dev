@@ -3,7 +3,8 @@ import StarGuessrApp from "@/components/StarGuessr/";
 import Document from "@/layouts/Document.astro";
 
 const title = "StarGuessr";
-const description = "StarGuessr";
+const description =
+  "星空を探索して、メシエ天体の位置を当てよう。5ラウンドに挑戦して、StarGuessrのスコアをシェア。";
 ---
 
 <style lang="scss">
@@ -13,6 +14,13 @@ const description = "StarGuessr";
   }
 </style>
 
-<Document title={title} description={description}>
+<Document
+  title={title}
+  description={description}
+  lang="ja"
+  image="https://r2.NI57721.dev/starguessr/OGP.jpg"
+  canonicalUrl="https://NI57721.dev/ja/starguessr/"
+  ogType="website"
+>
   <StarGuessrApp client:only="react" lang="ja" />
 </Document>
